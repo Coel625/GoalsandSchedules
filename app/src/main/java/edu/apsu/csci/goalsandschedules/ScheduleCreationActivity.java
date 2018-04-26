@@ -30,25 +30,25 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        Button b = (Button) findViewById(R.id.schedulesubmit_button);
-        Button b2 = (Button) findViewById(R.id.newSTEntry_button);
+        //Button b = (Button) findViewById(R.id.schedulesubmit_button);
+        //Button b2 = (Button) findViewById(R.id.newSTEntry_button);
         if (v.getId() == R.id.schedulesubmit_button) {
             Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.newSTEntry_button) {
-            mainLayout.addView(createNewTextView("Temp"));
+            /*mainLayout.addView(createNewTextView("Temp"));
             mainLayout.removeView(b2);
             mainLayout.addView(b2);
             mainLayout.removeView(b);
-            mainLayout.addView(b);
+            mainLayout.addView(b); */
         }
     }
 
-    private TextView createNewTextView(String text) {
+    /*private TextView createNewTextView(String text) {
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         final TextView textView = new TextView(this);
         textView.setLayoutParams(lparams);
         textView.setText("New text: " + text);
         return textView;
-    }
+    } */
 }

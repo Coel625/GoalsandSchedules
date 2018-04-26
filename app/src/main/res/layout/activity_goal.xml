@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border"
+            android:background="@drawable/border_top"
             android:orientation="horizontal">
 
             <Button
@@ -59,21 +59,403 @@
             android:textSize="30sp" />
 
         <LinearLayout
+            android:id="@+id/goalList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="@drawable/border_entry_list"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/goaladd_button"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/goalListName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@drawable/round_button"
-                android:text="       + Add New Goal        "
-                android:textColor="#42f477"
+                android:layout_gravity="center"
+                android:text="Goal: "
+                android:textColor="#9739db"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goalListNameData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Description: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListDescData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Progress: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/goalListShort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Short-Term Goals: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListShortData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
                 android:textSize="20sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/goalList2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_entry_list"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goalListName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Goal: "
+                android:textColor="#9739db"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goalListNameData2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListDesc2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Description: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListDescData2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListProgress2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Progress: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/goalListShort2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Short-Term Goals: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListShortData2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/goalList3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_entry_list"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goalListName3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Goal: "
+                android:textColor="#9739db"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goalListNameData3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListDesc3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Description: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListDescData3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListProgress3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Progress: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/goalListShort3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Short-Term Goals: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListShortData3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/goalList4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_entry_list"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goalListName4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Goal: "
+                android:textColor="#9739db"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goalListNameData4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListDesc4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Description: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListDescData4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListProgress4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Progress: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/goalListShort4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Short-Term Goals: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListShortData4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/goalList5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_entry_list"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/goalListName5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Goal: "
+                android:textColor="#9739db"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/goalListNameData5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListDesc5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Description: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListDescData5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/goalListProgress5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Progress: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/goalListShort5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Short-Term Goals: "
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/goalListShortData5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#9739db"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/goaladd_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="       + Add New Goal        "
+            android:textColor="#42f477"
+            android:textSize="20sp" />
 
     </LinearLayout>
 </ScrollView>

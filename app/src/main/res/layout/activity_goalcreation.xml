@@ -30,23 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Goal ID: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/goalTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goal Title: "
@@ -54,14 +38,14 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/goalTitleEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/goalDescText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goal Description: "
@@ -69,17 +53,32 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/goalDescEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/goalProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goal Progress (%): "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/goalProgressEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short-Term Goal 1: "
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/subGoalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Short-Term Goal 1 (Required): "
                 android:textColor="#20afb2"
                 android:textSize="18sp" />
 
@@ -90,23 +89,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/subTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Goal ID: "
-                    android:textColor="#20afb2"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/subEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textIsSelectable="false" />
-
-                <TextView
-                    android:id="@+id/subTextView2"
+                    android:id="@+id/goalTitleText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Goal Title: "
@@ -114,14 +97,14 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/subEditText2"
+                    android:id="@+id/goalTitleEdit2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName" />
 
                 <TextView
-                    android:id="@+id/subTextView3"
+                    android:id="@+id/goalDescText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Goal Description: "
@@ -129,7 +112,7 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/subEditText3"
+                    android:id="@+id/goalDescEdit2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -137,66 +120,185 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/subGoalText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Term Goal 2: "
+                android:text="Short Term Goal 2 (Required): "
                 android:textColor="#20afb2"
                 android:textSize="18sp" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/goalTitleText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Title: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalTitleEdit3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/goalDescText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Description: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalDescEdit3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/subTextView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Goal ID: "
-                android:textColor="#20afb2"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/subEditText4"
+                android:id="@+id/subGoalText3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textIsSelectable="false" />
+                android:text="Short Term Goal 3: "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/goalTitleText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Title: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalTitleEdit4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/goalDescText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Description: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalDescEdit4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/subTextView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Goal Title: "
-                android:textColor="#20afb2"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/subEditText5"
+                android:id="@+id/subGoalText4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:text="Short Term Goal 4: "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/goalTitleText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Title: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalTitleEdit5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/goalDescText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Description: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalDescEdit5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/subTextView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Goal Description: "
-                android:textColor="#20afb2"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/subEditText6"
+                android:id="@+id/subGoalText5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:text="Short Term Goal 5: "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/goalTitleText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Title: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalTitleEdit6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/goalDescText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Description: "
+                    android:textColor="#20afb2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/goalDescEdit6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <Button
