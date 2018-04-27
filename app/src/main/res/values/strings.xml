@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Goals and Schedules</string>
+
+    <string-array name="shortgoal_array" color="#20afb2">
+        <item>United States</item>
+        <item>Malaysia</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
 </resources>

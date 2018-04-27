@@ -9,20 +9,25 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GoalActivity extends Activity implements View.OnClickListener {
 
-    public static final int GOALLIST1 = 1000;
+    private static final int GOAL_TASK1 = 1000;
+    private static final int GOAL_TASK2 = 2000;
+    private static final int GOAL_TASK3 = 3000;
+    private static final int GOAL_TASK4 = 4000;
+    private static final int GOAL_TASK5 = 5000;
 
-    //private int progressStatus = 0;
-    //private Handler handler1 = new Handler();
+    public static final String GOALENTRY1 = "goalentry1";
+    public static final String GOALENTRY2 = "goalentry2";
+    public static final String GOALENTRY3 = "goalentry3";
+    public static final String GOALENTRY4 = "goalentry4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
-
-        Intent intent = getIntent();
 
         Button b = (Button) findViewById(R.id.goal_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -38,61 +43,6 @@ public class GoalActivity extends Activity implements View.OnClickListener {
 
         Button b4 = (Button) findViewById(R.id.goaladd_button);
         b4.setOnClickListener(this);
-
-        final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar1.setProgress(0);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY3) != null) {
-            int etInt = Integer.parseInt(intent.getStringExtra(GoalCreationActivity.GOALENTRY3));
-            progressBar1.setProgress(etInt);
-        }
-
-        final ProgressBar progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
-        progressBar2.setProgress(0);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY3) != null) {
-            int etInt = Integer.parseInt(intent.getStringExtra(GoalCreationActivity.GOALENTRY3));
-            progressBar1.setProgress(etInt);
-        }
-
-        final ProgressBar progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
-        progressBar3.setProgress(0);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY3) != null) {
-            int etInt = Integer.parseInt(intent.getStringExtra(GoalCreationActivity.GOALENTRY3));
-            progressBar1.setProgress(etInt);
-        }
-
-        final ProgressBar progressBar4 = (ProgressBar) findViewById(R.id.progressBar4);
-        progressBar4.setProgress(0);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY3) != null) {
-            int etInt = Integer.parseInt(intent.getStringExtra(GoalCreationActivity.GOALENTRY3));
-            progressBar1.setProgress(etInt);
-        }
-
-        final ProgressBar progressBar5 = (ProgressBar) findViewById(R.id.progressBar5);
-        progressBar5.setProgress(0);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY3) != null) {
-            int etInt = Integer.parseInt(intent.getStringExtra(GoalCreationActivity.GOALENTRY3));
-            progressBar1.setProgress(etInt);
-        }
-
-        TextView tv1 = (TextView) findViewById(R.id.goalListNameData);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY1) != null) {
-            tv1.setText(intent.getStringExtra(GoalCreationActivity.GOALENTRY1));
-        }
-
-        TextView tv2 = (TextView) findViewById(R.id.goalListDescData);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY2) != null) {
-            tv2.setText(intent.getStringExtra(GoalCreationActivity.GOALENTRY2));
-        }
-
-        TextView tv3 = (TextView) findViewById(R.id.goalListNameData2);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY4) != null) {
-            tv3.setText(intent.getStringExtra(GoalCreationActivity.GOALENTRY4));
-        }
-
-        TextView tv4 = (TextView) findViewById(R.id.goalListNameData3);
-        if (intent.getStringExtra(GoalCreationActivity.GOALENTRY5) != null) {
-            tv4.setText(intent.getStringExtra(GoalCreationActivity.GOALENTRY5));
-        }
 
         LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.goalList);
         linearLayout1.setOnClickListener(this);
@@ -120,34 +70,252 @@ public class GoalActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         } else if (v.getId() == R.id.goalList) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
-            //startActivityForResult(intent, GOALLIST1);
+            startActivityForResult(intent, GOAL_TASK1);
         } else if (v.getId() == R.id.goalList2) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, GOAL_TASK2);
         } else if (v.getId() == R.id.goalList3) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, GOAL_TASK3);
         } else if (v.getId() == R.id.goalList4) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, GOAL_TASK4);
         } else if (v.getId() == R.id.goalList5) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, GOAL_TASK5);
         } else if (v.getId() == R.id.goaladd_button) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
             startActivity(intent);
         }
     }
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-                Uri selectedImageURI = data.getData();
-                drawableView.setImageURI(selectedImageURI);
+
+        if (requestCode == GOAL_TASK1) {
+            if (resultCode == RESULT_OK) {
+                String goalName = "";
+                if (data.hasExtra(GOALENTRY1)) {
+                    goalName = data.getStringExtra(GOALENTRY1);
+                }
+
+                String goalDesc = "";
+                if (data.hasExtra(GOALENTRY2)) {
+                    goalDesc = data.getStringExtra(GOALENTRY2);
+                }
+
+                String progressValue = "";
+                if (data.hasExtra(GOALENTRY3)) {
+                    progressValue = data.getStringExtra(GOALENTRY3);
+                }
+
+                String subGoalTitle = "";
+                if (data.hasExtra(GOALENTRY4)) {
+                    subGoalTitle = data.getStringExtra(GOALENTRY4);
+                }
+
+                int progressValueInt = 0;
+                if (!(progressValue.equals(""))) {
+                    progressValueInt = Integer.parseInt(progressValue);
+                }
+
+                TextView tv1 = (TextView) findViewById(R.id.goalListNameData);
+                tv1.setText(goalName);
+
+                TextView tv2 = (TextView) findViewById(R.id.goalListDescData);
+                tv2.setText(goalDesc);
+
+                final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar);
+                progressBar1.setProgress(progressValueInt);
+
+                TextView tv3 = (TextView) findViewById(R.id.goalListShortData);
+                tv3.setText(subGoalTitle);
             }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Request cancelled", Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
-    } */
+
+        if (requestCode == GOAL_TASK2) {
+            if (resultCode == RESULT_OK) {
+                String goalName = "";
+                if (data.hasExtra(GOALENTRY1)) {
+                    goalName = data.getStringExtra(GOALENTRY1);
+                }
+
+                String goalDesc = "";
+                if (data.hasExtra(GOALENTRY2)) {
+                    goalDesc = data.getStringExtra(GOALENTRY2);
+                }
+
+                String progressValue = "";
+                if (data.hasExtra(GOALENTRY3)) {
+                    progressValue = data.getStringExtra(GOALENTRY3);
+                }
+
+                String subGoalTitle = "";
+                if (data.hasExtra(GOALENTRY4)) {
+                    subGoalTitle = data.getStringExtra(GOALENTRY4);
+                }
+
+                int progressValueInt = 0;
+                if (!(progressValue.equals(""))) {
+                    progressValueInt = Integer.parseInt(progressValue);
+                }
+
+                TextView tv1 = (TextView) findViewById(R.id.goalListNameData2);
+                tv1.setText(goalName);
+
+                TextView tv2 = (TextView) findViewById(R.id.goalListDescData2);
+                tv2.setText(goalDesc);
+
+                final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar2);
+                progressBar1.setProgress(progressValueInt);
+
+                TextView tv3 = (TextView) findViewById(R.id.goalListShortData2);
+                tv3.setText(subGoalTitle);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Request cancelled", Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+        if (requestCode == GOAL_TASK3) {
+            if (resultCode == RESULT_OK) {
+                String goalName = "";
+                if (data.hasExtra(GOALENTRY1)) {
+                    goalName = data.getStringExtra(GOALENTRY1);
+                }
+
+                String goalDesc = "";
+                if (data.hasExtra(GOALENTRY2)) {
+                    goalDesc = data.getStringExtra(GOALENTRY2);
+                }
+
+                String progressValue = "";
+                if (data.hasExtra(GOALENTRY3)) {
+                    progressValue = data.getStringExtra(GOALENTRY3);
+                }
+
+                String subGoalTitle = "";
+                if (data.hasExtra(GOALENTRY4)) {
+                    subGoalTitle = data.getStringExtra(GOALENTRY4);
+                }
+
+                int progressValueInt = 0;
+                if (!(progressValue.equals(""))) {
+                    progressValueInt = Integer.parseInt(progressValue);
+                }
+
+                TextView tv1 = (TextView) findViewById(R.id.goalListNameData3);
+                tv1.setText(goalName);
+
+                TextView tv2 = (TextView) findViewById(R.id.goalListDescData3);
+                tv2.setText(goalDesc);
+
+                final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar3);
+                progressBar1.setProgress(progressValueInt);
+
+                TextView tv3 = (TextView) findViewById(R.id.goalListShortData3);
+                tv3.setText(subGoalTitle);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Request cancelled", Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+        if (requestCode == GOAL_TASK4) {
+            if (resultCode == RESULT_OK) {
+                String goalName = "";
+                if (data.hasExtra(GOALENTRY1)) {
+                    goalName = data.getStringExtra(GOALENTRY1);
+                }
+
+                String goalDesc = "";
+                if (data.hasExtra(GOALENTRY2)) {
+                    goalDesc = data.getStringExtra(GOALENTRY2);
+                }
+
+                String progressValue = "";
+                if (data.hasExtra(GOALENTRY3)) {
+                    progressValue = data.getStringExtra(GOALENTRY3);
+                }
+
+                String subGoalTitle = "";
+                if (data.hasExtra(GOALENTRY4)) {
+                    subGoalTitle = data.getStringExtra(GOALENTRY4);
+                }
+
+                int progressValueInt = 0;
+                if (!(progressValue.equals(""))) {
+                    progressValueInt = Integer.parseInt(progressValue);
+                }
+
+                TextView tv1 = (TextView) findViewById(R.id.goalListNameData4);
+                tv1.setText(goalName);
+
+                TextView tv2 = (TextView) findViewById(R.id.goalListDescData4);
+                tv2.setText(goalDesc);
+
+                final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar4);
+                progressBar1.setProgress(progressValueInt);
+
+                TextView tv3 = (TextView) findViewById(R.id.goalListShortData4);
+                tv3.setText(subGoalTitle);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Request cancelled", Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+        if (requestCode == GOAL_TASK5) {
+            if (resultCode == RESULT_OK) {
+                String goalName = "";
+                if (data.hasExtra(GOALENTRY1)) {
+                    goalName = data.getStringExtra(GOALENTRY1);
+                }
+
+                String goalDesc = "";
+                if (data.hasExtra(GOALENTRY2)) {
+                    goalDesc = data.getStringExtra(GOALENTRY2);
+                }
+
+                String progressValue = "";
+                if (data.hasExtra(GOALENTRY3)) {
+                    progressValue = data.getStringExtra(GOALENTRY3);
+                }
+
+                String subGoalTitle = "";
+                if (data.hasExtra(GOALENTRY4)) {
+                    subGoalTitle = data.getStringExtra(GOALENTRY4);
+                }
+
+                int progressValueInt = 0;
+                if (!(progressValue.equals(""))) {
+                    progressValueInt = Integer.parseInt(progressValue);
+                }
+
+                TextView tv1 = (TextView) findViewById(R.id.goalListNameData5);
+                tv1.setText(goalName);
+
+                TextView tv2 = (TextView) findViewById(R.id.goalListDescData5);
+                tv2.setText(goalDesc);
+
+                final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar5);
+                progressBar1.setProgress(progressValueInt);
+
+                TextView tv3 = (TextView) findViewById(R.id.goalListShortData5);
+                tv3.setText(subGoalTitle);
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Request cancelled", Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

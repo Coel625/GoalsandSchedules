@@ -30,7 +30,39 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/entryTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entry Title: "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/entryTitleEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/entryDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entry Date: "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/entryDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/entryStartText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entry Start Time: "
@@ -38,15 +70,15 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/entryStartEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="time"
+                android:inputType="datetime"
                 android:textIsSelectable="false" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/entryEndText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entry End Time: "
@@ -54,14 +86,14 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/entryEndEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="time" />
+                android:inputType="datetime" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/entryDescText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entry Description: "
@@ -69,19 +101,25 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/entryDescEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/entryShortText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Short-Term Goal: "
                 android:textColor="#20afb2"
                 android:textSize="18sp" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/shortgoal_array">
+            </Spinner>
 
             <LinearLayout
                 android:layout_width="match_parent"
