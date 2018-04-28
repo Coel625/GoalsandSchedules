@@ -24,167 +24,81 @@
             android:textColor="#20afb2"
             android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/entryTitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Title: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/entryTitleEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:id="@+id/entryDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Date: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/entryDateEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:id="@+id/entryStartText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Start Time: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/entryStartEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="datetime"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:id="@+id/entryEndText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry End Time: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/entryEndEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="datetime" />
-
-            <TextView
-                android:id="@+id/entryDescText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entry Description: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/entryDescEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/entryShortText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Short-Term Goal: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/shortgoal_array">
-            </Spinner>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/subTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Goal ID: "
-                    android:textColor="#20afb2"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/subEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textIsSelectable="false" />
-
-                <TextView
-                    android:id="@+id/subTextView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Goal Title: "
-                    android:textColor="#20afb2"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/subEditText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/subTextView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Goal Description: "
-                    android:textColor="#20afb2"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/subEditText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/newSTEntry_button"
+        <TextView
+            android:id="@+id/entryStartText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="       + Create Short-Term Goal        "
-            android:textColor="#42f477"
-            android:textSize="14sp" />
+            android:text="Entry Start Time: "
+            android:textColor="#20afb2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/entryStartEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="datetime"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/entryEndText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry End Time: "
+            android:textColor="#20afb2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/entryEndEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="datetime" />
+
+        <TextView
+            android:id="@+id/entryDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry Date: "
+            android:textColor="#20afb2"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/entryDateSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/day_array">
+        </Spinner>
+
+        <TextView
+            android:id="@+id/entryShortText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Short-Term Goal: "
+            android:textColor="#20afb2"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/entryShortSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/shortgoal_array">
+        </Spinner>
+
+        <TextView
+            android:id="@+id/entryDescText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry Description: "
+            android:textColor="#20afb2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/entryDescEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/schedulesubmit_button"

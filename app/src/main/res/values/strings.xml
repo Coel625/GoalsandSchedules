@@ -1,14 +1,23 @@
 <resources>
     <string name="app_name">Goals and Schedules</string>
 
+    <string-array name="day_array" color="#20afb2">
+        <item>Select a date: </item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
     <string-array name="shortgoal_array" color="#20afb2">
-        <item>United States</item>
-        <item>Malaysia</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
+        <item>Select one of your short-term goals: </item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>
