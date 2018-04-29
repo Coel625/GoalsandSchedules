@@ -24,21 +24,63 @@
             android:textColor="#20afb2"
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/entryStartText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entry Start Time: "
-            android:textColor="#20afb2"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/entryStartEdit"
+        <LinearLayout
+            android:id="@+id/scheduleTitleInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="datetime"
-            android:textIsSelectable="false" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/entryStartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entry Start Time: "
+                android:textColor="#20afb2"
+                android:layout_weight="3"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/scheduleEntryShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#20afb2"
+                android:layout_weight="1"
+                android:text="Share Online" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/entryFullStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/entryStartTimeFirstEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="datetime"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/entryStartFillText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=": "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/entryStartTimeLastEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="datetime"
+                android:textIsSelectable="false" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/entryEndText"
@@ -48,12 +90,37 @@
             android:textColor="#20afb2"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/entryEndEdit"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/entryFullEndTime"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="datetime" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/entryEndTimeFirstEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="datetime"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/entryEndFillText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=": "
+                android:textColor="#20afb2"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/entryEndTimeLastEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="datetime"
+                android:textIsSelectable="false" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/entryDateText"

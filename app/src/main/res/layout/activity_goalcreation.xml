@@ -29,13 +29,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/goalTitleText"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/goalTitleInformation"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Goal Title: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goalTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Goal Title: "
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/goalEntryShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#20afb2"
+                    android:layout_weight="1"
+                    android:text="Share Online" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/goalTitleEdit"
@@ -59,28 +75,51 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/goalProgressText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Goal Progress (%): "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/goalProgressEdit"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/subGoalText"
+                <TextView
+                    android:id="@+id/goalShortTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Short-term Goals:     #"
+                    android:textColor="#20afb2"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/goalShortNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="2"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/subGoalTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short-Term Goal 1 (Required): "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subGoalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Short-Term Goal 1: "
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/subGoalCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completed"
+                    android:textColor="#20afb2" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,13 +158,29 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/subGoalText2"
+            <LinearLayout
+                android:id="@+id/subGoalTitle2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Term Goal 2 (Required): "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subGoalText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Short-Term Goal 2: "
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/subGoalCheck2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completed"
+                    android:textColor="#20afb2" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,13 +219,29 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/subGoalText3"
+            <LinearLayout
+                android:id="@+id/subGoalTitle3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Term Goal 3: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subGoalText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Short-Term Goal 3: "
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/subGoalCheck3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completed"
+                    android:textColor="#20afb2" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -209,13 +280,29 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/subGoalText4"
+            <LinearLayout
+                android:id="@+id/subGoalTitle4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Term Goal 4: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subGoalText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="Short-Term Goal 4: "
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/subGoalCheck4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completed"
+                    android:textColor="#20afb2" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -254,13 +341,29 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/subGoalText5"
+            <LinearLayout
+                android:id="@+id/subGoalTitle5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Short Term Goal 5: "
-                android:textColor="#20afb2"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subGoalText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Short-Term Goal 5: "
+                    android:layout_weight="3"
+                    android:textColor="#20afb2"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/subGoalCheck5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Completed"
+                    android:textColor="#20afb2" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

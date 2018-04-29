@@ -43,25 +43,72 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
 
         Intent intent = new Intent();
 
-        EditText et1 = (EditText) findViewById(R.id.entryStartEdit);
-        EditText et2 = (EditText) findViewById(R.id.entryEndEdit);
-        EditText et3 = (EditText) findViewById(R.id.entryDescEdit);
+        EditText et1 = (EditText) findViewById(R.id.entryStartTimeFirstEdit);
+        EditText et2 = (EditText) findViewById(R.id.entryStartTimeLastEdit);
+        EditText et3 = (EditText) findViewById(R.id.entryEndTimeFirstEdit);
+        EditText et4 = (EditText) findViewById(R.id.entryEndTimeLastEdit);
         Spinner spinner = (Spinner) findViewById(R.id.entryDateSelect);
         Spinner spinner2 = (Spinner) findViewById(R.id.entryShortSelect);
+        EditText et5 = (EditText) findViewById(R.id.entryDescEdit);
 
         String etString = et1.getText().toString();
         String etString2 = et2.getText().toString();
+        String etString3 = et3.getText().toString();
+        String etString4 = et4.getText().toString();
+
+        int etStartFirstInt;
+        if (!(etString.equals(""))) {
+            etStartFirstInt = Integer.parseInt(etString);
+        } else {
+            etStartFirstInt = 99;
+        }
+
+        int etStartLastInt;
+        if (!(etString2.equals(""))) {
+            etStartLastInt = Integer.parseInt(etString2);
+        } else {
+            etStartLastInt = 99;
+        }
+
+        int etEndFirstInt;
+        if (!(etString3.equals(""))) {
+            etEndFirstInt = Integer.parseInt(etString3);
+        } else {
+            etEndFirstInt = 99;
+        }
+
+        int etEndLastInt;
+        if (!(etString4.equals(""))) {
+            etEndLastInt = Integer.parseInt(etString4);
+        } else {
+            etEndLastInt = 99;
+        }
+
         String spinnerString = spinner.getSelectedItem().toString();
         String spinnerString2 = spinner2.getSelectedItem().toString();
-        String etString3 = et3.getText().toString();
+        String etString5 = et5.getText().toString();
 
-        if (etString.equals("") || etString2.equals("") || etString3.equals("") ||
-                spinnerString.equals("Select a date:") || spinnerString2.equals("Select one of your short-term goals:")) {
-            Toast.makeText(this, "Please fill in the date and data fields for this entry", Toast.LENGTH_LONG).show();
+        if (etString5.equals("") || spinnerString.equals("Select a date:") || spinnerString2.equals("Select one of your short-term goals:") ||
+                etStartFirstInt == 99 || etStartLastInt == 99 || etEndFirstInt == 99 || etEndLastInt == 99 ||
+                etStartFirstInt >= 24 || etStartLastInt >= 60 || etEndFirstInt >= 24 || etEndLastInt >= 60) {
+            Toast.makeText(this, "Please correct the date fields and data for this entry", Toast.LENGTH_LONG).show();
         } else {
-            if (!(etString.equals("")) || !(etString2.equals("")) || !(etString3.equals("")) ||
+            if (!(etString.equals("")) || !(etString2.equals("")) || !(etString3.equals("")) || !(etString4.equals("")) || !(etString5.equals("")) ||
                     !(spinnerString.equals("")) || !(spinnerString2.equals(""))) {
-                String combinedTimesString = "From " + etString + " to " + etString2;
+
+                if (etStartLastInt == 0 || etStartLastInt == 1 || etStartLastInt == 2 || etStartLastInt == 3 ||
+                        etStartLastInt == 4 || etStartLastInt == 5 || etStartLastInt == 6 || etStartLastInt == 7 ||
+                        etStartLastInt == 8 || etStartLastInt == 9) {
+                    etString2 = "0" + etString2;
+                }
+
+                if (etEndLastInt == 0 || etEndLastInt == 1 || etEndLastInt == 2 || etEndLastInt == 3 ||
+                        etEndLastInt == 4 || etEndLastInt == 5 || etEndLastInt == 6 || etEndLastInt == 7 ||
+                        etEndLastInt == 8 || etEndLastInt == 9) {
+                    etString4 = "0" + etString4;
+                }
+
+                String combinedTimesString = "From " + etString + ":" + etString2 + " to " + etString3 + ":" + etString4;
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA1, combinedTimesString);
 
                 String combinedDateString = "on " + spinnerString;
@@ -70,31 +117,7 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
                 String combinedShortString = "Short-Term Goals: " + spinnerString2;
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA3, combinedShortString);
 
-                intent.putExtra(ScheduleActivity.SCHEDULEDATA4, etString3);
-
-                /*String combinedShortString = etString4 + ", " + etString6;
-                if (!(etString8.equals("")) && !(etString9.equals("")) && etString10.equals("") && etString11.equals("") &&
-                        etString12.equals("") && etString13.equals("")) {
-                    combinedShortString += ", " + etString8;
-                } else if (!(etString10.equals("")) && !(etString11.equals("")) && etString8.equals("") && etString9.equals("") &&
-                        etString12.equals("") && etString13.equals("")) {
-                    combinedShortString += ", " + etString10;
-                } else if (!(etString12.equals("")) && !(etString13.equals("")) && etString8.equals("") && etString9.equals("") &&
-                        etString10.equals("") && etString11.equals("")) {
-                    combinedShortString += ", " + etString12;
-                } else if (!(etString8.equals("")) && !(etString9.equals("")) && !(etString10.equals("")) && !(etString11.equals("")) &&
-                        etString12.equals("") && etString13.equals("")) {
-                    combinedShortString += ", " + etString8 + ", " + etString10;
-                } else if (!(etString8.equals("")) && !(etString9.equals("")) && !(etString12.equals("")) && !(etString13.equals("")) &&
-                        etString10.equals("") && etString11.equals("")) {
-                    combinedShortString += ", " + etString8 + ", " + etString12;
-                } else if (!(etString10.equals("")) && !(etString11.equals("")) && !(etString12.equals("")) && !(etString13.equals("")) &&
-                        etString8.equals("") && etString9.equals("")) {
-                    combinedShortString += ", " + etString10 + ", " + etString12;
-                } else if (!(etString8.equals("")) && !(etString9.equals("")) && !(etString10.equals("")) && !(etString11.equals("")) &&
-                        !(etString12.equals("")) && !(etString13.equals(""))) {
-                    combinedShortString += ", " + etString8 + ", " + etString10 + ", " + etString12;
-                } */
+                intent.putExtra(ScheduleActivity.SCHEDULEDATA4, etString5);
 
                 setResult(RESULT_OK, intent);
             } else {
