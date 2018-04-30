@@ -61,20 +61,20 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 LongTermColumns.longterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                 LongTermColumns.title + " TEXT NOT NULL , " +
                 LongTermColumns.description + " TEXT NOT NULL , " +
-                LongTermColumns.progress + " INTEGER NOT NULL )";
+                LongTermColumns.progress + " TEXT NOT NULL )";
         db.execSQL(sql);
         sql="CREATE TABLE " + SHORT_TERM_TABLE + " (" +
                 ShortTermColumns.shortterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                ShortTermColumns.longterm_id + " INTEGER  NOT NULL , " +
+                ShortTermColumns.longterm_id + " TEXT  NOT NULL , " +
                 ShortTermColumns.title + " TEXT NOT NULL , " +
                 ShortTermColumns.description + " TEXT NOT NULL ," +
-                ShortTermColumns.order + " INTEGER NOT NULL )";
+                ShortTermColumns.order + " TEXT NOT NULL )";
         db.execSQL(sql);
         sql="CREATE TABLE " + SCHEDULE_TABLE + " (" +
                 ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                ScheduleColumns.shortterm_id + " INTEGER  NOT NULL , " +
+                ScheduleColumns.shortterm_id + " TEXT  NOT NULL , " +
                 ScheduleColumns.title + "  TEXT NOT NULL , " +
-                ScheduleColumns.date + "  DATE NOT NULL , " +
+                ScheduleColumns.date + "  TEXT NOT NULL , " +
                 ScheduleColumns.start + " TEXT NOT NULL , " +
                 ScheduleColumns.end + " TEXT NOT NULL , " +
                 ScheduleColumns.description + " TEXT NOT NULL )";
@@ -120,7 +120,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         LongTermColumns.longterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         LongTermColumns.title + " TEXT NOT NULL , " +
                         LongTermColumns.description + " TEXT NOT NULL , " +
-                        LongTermColumns.progress + " INTEGER NOT NULL )";
+                        LongTermColumns.progress + " TEXT NOT NULL )";
                 db.execSQL(sql);
 
                 // copy the data we want from the old table
@@ -139,10 +139,10 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 // recreate the table in the old schema
                 sql="CREATE TABLE " + SHORT_TERM_TABLE + " (" +
                         ShortTermColumns.shortterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                        ShortTermColumns.longterm_id + " INTEGER  NOT NULL , " +
+                        ShortTermColumns.longterm_id + " TEXT  NOT NULL , " +
                         ShortTermColumns.title + " TEXT NOT NULL , " +
                         ShortTermColumns.description + " TEXT NOT NULL ," +
-                        ShortTermColumns.order + " INTEGER NOT NULL )";
+                        ShortTermColumns.order + " TEXT NOT NULL )";
                 db.execSQL(sql);
 
                 // copy the data we want from the old table
@@ -164,7 +164,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         ScheduleColumns.shortterm_id + " INTEGER  NOT NULL , " +
                         ScheduleColumns.title + "  TEXT NOT NULL , " +
-                        ScheduleColumns.date + "  DATE NOT NULL , " +
+                        ScheduleColumns.date + "  TEXT NOT NULL , " +
                         ScheduleColumns.start + " TEXT NOT NULL , " +
                         ScheduleColumns.end + " TEXT NOT NULL , " +
                         ScheduleColumns.description + " TEXT NOT NULL )";

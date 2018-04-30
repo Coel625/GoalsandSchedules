@@ -13,7 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DbDataSource {private SQLiteDatabase database;
+public class DbDataSource {
+    private SQLiteDatabase database;
     private MySqlLiteHelper databaseHelper;
 
     public DbDataSource(Context context) {
