@@ -162,7 +162,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 // recreate the table in the old schema
                 sql="CREATE TABLE " + SCHEDULE_TABLE + " (" +
                         ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                        ScheduleColumns.shortterm_id + " INTEGER  NOT NULL , " +
+                        ScheduleColumns.shortterm_id + " TEXT  NOT NULL , " +
                         ScheduleColumns.title + "  TEXT NOT NULL , " +
                         ScheduleColumns.date + "  TEXT NOT NULL , " +
                         ScheduleColumns.start + " TEXT NOT NULL , " +
