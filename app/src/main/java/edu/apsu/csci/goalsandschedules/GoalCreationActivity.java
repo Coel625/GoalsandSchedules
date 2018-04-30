@@ -15,10 +15,12 @@ import android.widget.Toast;
 public class GoalCreationActivity extends Activity implements View.OnClickListener {
 
     private LinearLayout mainLayout;
+    private DbDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataSource = new DbDataSource(getApplicationContext());
         setContentView(R.layout.activity_goalcreation);
 
         mainLayout = (LinearLayout) findViewById(R.id.goalcreation_layout);
