@@ -60,19 +60,32 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
     public void finish() {
 
         Intent intent = new Intent();
-
+        Integer sortOrder = 1;
+        Integer currentLongTermID = dataSource.currentLongTermID() + 1;
         EditText et1 = (EditText) findViewById(R.id.goalTitleEdit);
         EditText et2 = (EditText) findViewById(R.id.goalDescEdit);
+        dataSource.createLongTermGoal(et1.toString(),et2.toString(),"");
+
         EditText et4 = (EditText) findViewById(R.id.goalTitleEdit2);
         EditText et5 = (EditText) findViewById(R.id.goalDescEdit2);
+        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        sortOrder=+1;
         EditText et6 = (EditText) findViewById(R.id.goalTitleEdit3);
         EditText et7 = (EditText) findViewById(R.id.goalDescEdit3);
+        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        sortOrder=+1;
         EditText et8 = (EditText) findViewById(R.id.goalTitleEdit4);
         EditText et9 = (EditText) findViewById(R.id.goalDescEdit4);
+        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        sortOrder=+1;
         EditText et10 = (EditText) findViewById(R.id.goalTitleEdit5);
         EditText et11 = (EditText) findViewById(R.id.goalDescEdit5);
+        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        sortOrder=+1;
         EditText et12 = (EditText) findViewById(R.id.goalTitleEdit6);
         EditText et13 = (EditText) findViewById(R.id.goalDescEdit6);
+        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        sortOrder=+1;
         EditText et14 = (EditText) findViewById(R.id.goalShortNumber);
 
         String etString = et1.getText().toString();

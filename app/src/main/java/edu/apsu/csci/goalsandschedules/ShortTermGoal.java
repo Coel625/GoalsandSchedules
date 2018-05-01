@@ -3,7 +3,7 @@ package edu.apsu.csci.goalsandschedules;
 public class ShortTermGoal {
     private int shortterm_id;
     private int longterm_id;
-    private int order;
+    private String order;
     private String title;
     private String description;
 
@@ -27,11 +27,11 @@ public class ShortTermGoal {
         this.longterm_id=longterm_id;
     }
 
-    public int getOrder() {
+    public String getOrder() {
         return order;
     }
 
-    public void setOrder(int order) {
+    public void setOrder(String order) {
         this.order=order;
     }
 

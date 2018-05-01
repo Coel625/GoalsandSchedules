@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class GoalActivity extends Activity implements View.OnClickListener {
 
+    private DbDataSource dataSource;
     private static final int GOAL_TASK1 = 1000;
     private static final int GOAL_TASK2 = 2000;
     private static final int GOAL_TASK3 = 3000;
@@ -27,6 +28,10 @@ public class GoalActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataSource = new DbDataSource(getApplicationContext());
+        dataSource.open();
+        dataSource.createLongTermGoal("0","0","0");
+        dataSource.close();
         setContentView(R.layout.activity_goal);
 
         Button b = (Button) findViewById(R.id.goal_button);
@@ -88,6 +93,17 @@ public class GoalActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
     }
+    /*
+    protected void onStart() {
+        super.onStart();
+
+        dataSource.open();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        dataSource.close();
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

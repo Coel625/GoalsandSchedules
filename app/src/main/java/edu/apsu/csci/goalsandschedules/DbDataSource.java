@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static edu.apsu.csci.goalsandschedules.MySqlLiteHelper.LONG_TERM_TABLE;
+import static edu.apsu.csci.goalsandschedules.MySqlLiteHelper.LongTermColumns.longTerm_id;
+
 public class DbDataSource {
     private SQLiteDatabase database;
     private MySqlLiteHelper databaseHelper;
@@ -37,14 +40,14 @@ public class DbDataSource {
         contentValues.put(MySqlLiteHelper.LongTermColumns.description.toString(), descriptionStr);
         contentValues.put(MySqlLiteHelper.LongTermColumns.progress.toString(), progressStr);
 
-        long id = database.insert(MySqlLiteHelper.LONG_TERM_TABLE,
+        long id = database.insert(LONG_TERM_TABLE,
                 null, contentValues);
 
         String[] columnNames = MySqlLiteHelper.LongTermColumns.names();
 
-        Cursor cursor = database.query(MySqlLiteHelper.LONG_TERM_TABLE,
+        Cursor cursor = database.query(LONG_TERM_TABLE,
                 columnNames,
-                MySqlLiteHelper.LongTermColumns.longterm_id + " = " + id,
+                longTerm_id + " = " + id,
                 null, null, null, null
         );
 
@@ -54,13 +57,19 @@ public class DbDataSource {
 
         return longtermgoal;
     }
-
+    public Integer currentLongTermID(){
+        int currentLongTermID = 0;
+        Cursor cursor = database.rawQuery("SELECT MAX(longterm_id) FROM LONG_TERM_TABLE", null );
+        cursor.moveToFirst();
+        currentLongTermID = cursor.getInt(0);
+        return currentLongTermID;
+    }
     public List<LongTermGoal> getAllLongTermGoals() {
         List<LongTermGoal> longtermgoals = new ArrayList<>();
 
         String columns[] = MySqlLiteHelper.LongTermColumns.names();
 
-        Cursor cursor = database.query(MySqlLiteHelper.LONG_TERM_TABLE,
+        Cursor cursor = database.query(LONG_TERM_TABLE,
                 columns,
                 null, null, null, null, null);
 
@@ -78,7 +87,7 @@ public class DbDataSource {
     private LongTermGoal cursorToLongTermGoal(Cursor cursor) {
         LongTermGoal longtermgoal = new LongTermGoal();
 
-        int longtermId = cursor.getInt(MySqlLiteHelper.LongTermColumns.longterm_id.ordinal());
+        int longtermId = cursor.getInt(longTerm_id.ordinal());
         longtermgoal.setLongterm_id(longtermId);
 
         String title = cursor.getString(MySqlLiteHelper.LongTermColumns.title.ordinal());
@@ -97,7 +106,7 @@ public class DbDataSource {
     public ShortTermGoal createShortTermGoal(String longterm_idStr, String titleStr, String descriptionStr , String orderStr) {
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(MySqlLiteHelper.ShortTermColumns.longterm_id.toString(), longterm_idStr);
+        contentValues.put(MySqlLiteHelper.ShortTermColumns.longTerm_id.toString(), longterm_idStr);
         contentValues.put(MySqlLiteHelper.ShortTermColumns.title.toString(), titleStr);
         contentValues.put(MySqlLiteHelper.ShortTermColumns.description.toString(), descriptionStr);
         contentValues.put(MySqlLiteHelper.ShortTermColumns.order.toString(), orderStr);
@@ -109,7 +118,7 @@ public class DbDataSource {
 
         Cursor cursor = database.query(MySqlLiteHelper.SHORT_TERM_TABLE,
                 columnNames,
-                MySqlLiteHelper.ShortTermColumns.shortterm_id + " = " + id,
+                MySqlLiteHelper.ShortTermColumns.shortTerm_id + " = " + id,
                 null, null, null, null
         );
 
@@ -143,10 +152,10 @@ public class DbDataSource {
     private ShortTermGoal cursorToShortTermGoal(Cursor cursor) {
         ShortTermGoal shorttermgoal = new ShortTermGoal();
 
-        int shorttermId = cursor.getInt(MySqlLiteHelper.ShortTermColumns.shortterm_id.ordinal());
+        int shorttermId = cursor.getInt(MySqlLiteHelper.ShortTermColumns.shortTerm_id.ordinal());
         shorttermgoal.setShortterm_id(shorttermId);
 
-        int longtermId = cursor.getInt(MySqlLiteHelper.ShortTermColumns.longterm_id.ordinal());
+        int longtermId = cursor.getInt(MySqlLiteHelper.ShortTermColumns.longTerm_id.ordinal());
         shorttermgoal.setLongterm_id(longtermId);
 
         String title = cursor.getString(MySqlLiteHelper.ShortTermColumns.title.ordinal());
@@ -165,7 +174,7 @@ public class DbDataSource {
     public Schedule createSchedule(String shortterm_idStr, String titleStr, String dateStr, String startStr, String endStr, String descriptionStr) {
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(MySqlLiteHelper.ScheduleColumns.shortterm_id.toString(), shortterm_idStr);
+        contentValues.put(MySqlLiteHelper.ScheduleColumns.shortTerm_id.toString(), shortterm_idStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.title.toString(), titleStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.date.toString(), dateStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.start.toString(), startStr);
@@ -216,7 +225,7 @@ public class DbDataSource {
         int scheduleId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.schedule_id.ordinal());
         schedule.setSchedule_id(scheduleId);
 
-        int shorttermId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.shortterm_id.ordinal());
+        int shorttermId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.shortTerm_id.ordinal());
         schedule.setSchedule_id(shorttermId);
 
         String dateStr = cursor.getString(MySqlLiteHelper.ScheduleColumns.date.ordinal());

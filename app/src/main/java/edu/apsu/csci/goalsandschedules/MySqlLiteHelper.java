@@ -8,12 +8,34 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     private static final String DB_NAME="G&S.sqlite";
     private static final int DB_VERSION=1;
 
-    public static final String LONG_TERM_TABLE="LongTerm";
-    public static final String SHORT_TERM_TABLE="ShortTerm";
+    public static final String LONG_TERM_TABLE="Long_Term";
+    public static final String SHORT_TERM_TABLE="Short_Term";
     public static final String SCHEDULE_TABLE="Schedule";
 
+    private static final String CREATE_LONG_TERM_TABLE = "CREATE TABLE " + LONG_TERM_TABLE + " (" +
+            LongTermColumns.longTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
+            LongTermColumns.title + " TEXT NOT NULL , " +
+            LongTermColumns.description + " TEXT NOT NULL , " +
+            LongTermColumns.progress + " TEXT NOT NULL )";
+
+    private static final String CREATE_SHORT_TERM_TABLE = "CREATE TABLE " + SHORT_TERM_TABLE + " (" +
+            ShortTermColumns.shortTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "+
+            ShortTermColumns.longTerm_id + " TEXT NOT NULL , " +
+            ShortTermColumns.title + " TEXT NOT NULL , " +
+            ShortTermColumns.description + " TEXT NOT NULL , "+
+            ShortTermColumns.order + " TEXT NOT NULL )";
+
+    private static final String CREATE_SCHEDULE_TABLE = " CREATE TABLE " + SCHEDULE_TABLE + " (" +
+            ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
+            ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
+            ScheduleColumns.title + "  TEXT NOT NULL , " +
+            ScheduleColumns.date + "  TEXT NOT NULL , " +
+            ScheduleColumns.start + " TEXT NOT NULL , " +
+            ScheduleColumns.end + " TEXT NOT NULL , " +
+            ScheduleColumns.description + " TEXT NOT NULL )";
+
     public enum LongTermColumns {
-        longterm_id, title, description, progress;
+        longTerm_id, title, description, progress;
 
         public static String[] names() {
             LongTermColumns[] v=values();
@@ -26,7 +48,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     public enum ShortTermColumns {
-        shortterm_id, longterm_id, title, description, order;
+        shortTerm_id, longTerm_id, title, description, order;
 
         public static String[] names() {
             ShortTermColumns[] v=values();
@@ -39,7 +61,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     public enum ScheduleColumns {
-        schedule_id, shortterm_id, title, date, start, end, description;
+        schedule_id, shortTerm_id, title, date, start, end, description;
 
         public static String[] names() {
             ScheduleColumns[] v=values();
@@ -57,28 +79,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql="CREATE TABLE " + LONG_TERM_TABLE + " (" +
-                LongTermColumns.longterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                LongTermColumns.title + " TEXT NOT NULL , " +
-                LongTermColumns.description + " TEXT NOT NULL , " +
-                LongTermColumns.progress + " TEXT NOT NULL )";
-        db.execSQL(sql);
-        sql="CREATE TABLE " + SHORT_TERM_TABLE + " (" +
-                ShortTermColumns.shortterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                ShortTermColumns.longterm_id + " TEXT  NOT NULL , " +
-                ShortTermColumns.title + " TEXT NOT NULL , " +
-                ShortTermColumns.description + " TEXT NOT NULL ," +
-                ShortTermColumns.order + " TEXT NOT NULL )";
-        db.execSQL(sql);
-        sql="CREATE TABLE " + SCHEDULE_TABLE + " (" +
-                ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                ScheduleColumns.shortterm_id + " TEXT  NOT NULL , " +
-                ScheduleColumns.title + "  TEXT NOT NULL , " +
-                ScheduleColumns.date + "  TEXT NOT NULL , " +
-                ScheduleColumns.start + " TEXT NOT NULL , " +
-                ScheduleColumns.end + " TEXT NOT NULL , " +
-                ScheduleColumns.description + " TEXT NOT NULL )";
-        db.execSQL(sql);
+        db.execSQL(CREATE_LONG_TERM_TABLE);
+        db.execSQL(CREATE_SCHEDULE_TABLE);
+        db.execSQL(CREATE_SHORT_TERM_TABLE);
     }
 
     @Override
@@ -117,7 +120,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
                 // recreate the table in the old schema
                 sql="CREATE TABLE " + LONG_TERM_TABLE + " (" +
-                        LongTermColumns.longterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
+                        LongTermColumns.longTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         LongTermColumns.title + " TEXT NOT NULL , " +
                         LongTermColumns.description + " TEXT NOT NULL , " +
                         LongTermColumns.progress + " TEXT NOT NULL )";
@@ -126,7 +129,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 // copy the data we want from the old table
                 sql="insert into " + LONG_TERM_TABLE +
                         " select " +
-                        LongTermColumns.longterm_id + ", " +
+                        LongTermColumns.longTerm_id + ", " +
                         LongTermColumns.title + ", " +
                         LongTermColumns.description + "," +
                         LongTermColumns.progress +
@@ -138,8 +141,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
                 // recreate the table in the old schema
                 sql="CREATE TABLE " + SHORT_TERM_TABLE + " (" +
-                        ShortTermColumns.shortterm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                        ShortTermColumns.longterm_id + " TEXT  NOT NULL , " +
+                        ShortTermColumns.shortTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
+                        ShortTermColumns.longTerm_id + " TEXT  NOT NULL , " +
                         ShortTermColumns.title + " TEXT NOT NULL , " +
                         ShortTermColumns.description + " TEXT NOT NULL ," +
                         ShortTermColumns.order + " TEXT NOT NULL )";
@@ -148,8 +151,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 // copy the data we want from the old table
                 sql="insert into " + SHORT_TERM_TABLE +
                         " select " +
-                        ShortTermColumns.shortterm_id + ", " +
-                        ShortTermColumns.longterm_id + ", " +
+                        ShortTermColumns.shortTerm_id + ", " +
+                        ShortTermColumns.longTerm_id + ", " +
                         ShortTermColumns.title + ", " +
                         ShortTermColumns.description + ", " +
                         ShortTermColumns.order +
@@ -162,7 +165,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 // recreate the table in the old schema
                 sql="CREATE TABLE " + SCHEDULE_TABLE + " (" +
                         ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
-                        ScheduleColumns.shortterm_id + " TEXT  NOT NULL , " +
+                        ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
                         ScheduleColumns.title + "  TEXT NOT NULL , " +
                         ScheduleColumns.date + "  TEXT NOT NULL , " +
                         ScheduleColumns.start + " TEXT NOT NULL , " +
@@ -174,7 +177,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 sql="insert into " + SCHEDULE_TABLE +
                         " select " +
                         ScheduleColumns.schedule_id + ", " +
-                        ScheduleColumns.shortterm_id + ", " +
+                        ScheduleColumns.shortTerm_id + ", " +
                         ScheduleColumns.title + ", " +
                         ScheduleColumns.date + ", " +
                         ScheduleColumns.start + "," +
