@@ -164,7 +164,7 @@ public class DbDataSource {
         String description = cursor.getString(MySqlLiteHelper.ShortTermColumns.description.ordinal());
         shorttermgoal.setDescription(description);
 
-        int order = cursor.getInt(MySqlLiteHelper.ShortTermColumns.order.ordinal());
+        String order = cursor.getString(MySqlLiteHelper.ShortTermColumns.order.ordinal());
         shorttermgoal.setOrder(order);
 
         return shorttermgoal;
