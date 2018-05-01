@@ -20,16 +20,16 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataSource = new DbDataSource(getApplicationContext());
+        dataSource=new DbDataSource(getApplicationContext());
         setContentView(R.layout.activity_goalcreation);
 
-        mainLayout = (LinearLayout) findViewById(R.id.goalcreation_layout);
+        mainLayout=(LinearLayout) findViewById(R.id.goalcreation_layout);
 
-        Button b = (Button) findViewById(R.id.goalsubmit_button);
+        Button b=(Button) findViewById(R.id.goalsubmit_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b.setOnClickListener(this);
 
-        Button b2 = (Button) findViewById(R.id.newSTGoal_button);
+        Button b2=(Button) findViewById(R.id.newSTGoal_button);
         b2.setOnClickListener(this);
     }
 
@@ -58,36 +58,53 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
 
     @Override
     public void finish() {
+        dataSource = new DbDataSource(getApplicationContext());
+        dataSource.open();
+        Intent intent=new Intent();
+        Integer sortOrder=1;
+        Integer currentLongTermID= 1;
+        EditText et1=(EditText) findViewById(R.id.goalTitleEdit);
+        String et1Str = et1.getText().toString();
+        EditText et2=(EditText) findViewById(R.id.goalDescEdit);
+        String et2Str = et2.getText().toString();
+        dataSource.createLongTermGoal(et1Str,et2Str, "0");
+        et1.getText().clear();
+        et2.getText().clear();
 
-        Intent intent = new Intent();
-        Integer sortOrder = 1;
-        Integer currentLongTermID = dataSource.currentLongTermID() + 1;
-        EditText et1 = (EditText) findViewById(R.id.goalTitleEdit);
-        EditText et2 = (EditText) findViewById(R.id.goalDescEdit);
-        dataSource.createLongTermGoal(et1.toString(),et2.toString(),"");
-
-        EditText et4 = (EditText) findViewById(R.id.goalTitleEdit2);
-        EditText et5 = (EditText) findViewById(R.id.goalDescEdit2);
-        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        EditText et4=(EditText) findViewById(R.id.goalTitleEdit2);
+        EditText et5=(EditText) findViewById(R.id.goalDescEdit2);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et4.getText().toString(), et5.getText().toString(), sortOrder.toString());
+        et4.getText().clear();
+        et5.getText().clear();
         sortOrder=+1;
-        EditText et6 = (EditText) findViewById(R.id.goalTitleEdit3);
-        EditText et7 = (EditText) findViewById(R.id.goalDescEdit3);
-        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        /*
+        EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
+        EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et6.toString(), et7.toString(), sortOrder.toString());
+        et5.getText().clear();
+        et7.getText().clear();
         sortOrder=+1;
-        EditText et8 = (EditText) findViewById(R.id.goalTitleEdit4);
-        EditText et9 = (EditText) findViewById(R.id.goalDescEdit4);
-        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        EditText et8=(EditText) findViewById(R.id.goalTitleEdit4);
+        EditText et9=(EditText) findViewById(R.id.goalDescEdit4);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et8.toString(), et9.toString(), sortOrder.toString());
+        et8.getText().clear();
+        et9.getText().clear();
         sortOrder=+1;
-        EditText et10 = (EditText) findViewById(R.id.goalTitleEdit5);
-        EditText et11 = (EditText) findViewById(R.id.goalDescEdit5);
-        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        EditText et10=(EditText) findViewById(R.id.goalTitleEdit5);
+        EditText et11=(EditText) findViewById(R.id.goalDescEdit5);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et10.toString(), et11.toString(), sortOrder.toString());
+        et10.getText().clear();
+        et11.getText().clear();
         sortOrder=+1;
-        EditText et12 = (EditText) findViewById(R.id.goalTitleEdit6);
-        EditText et13 = (EditText) findViewById(R.id.goalDescEdit6);
-        dataSource.createShortTermGoal(currentLongTermID.toString(),et4.toString(),et5.toString(),sortOrder.toString());
+        EditText et12=(EditText) findViewById(R.id.goalTitleEdit6);
+        EditText et13=(EditText) findViewById(R.id.goalDescEdit6);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et12.toString(), et13.toString(), sortOrder.toString());
+        et12.getText().clear();
+        et13.getText().clear();
         sortOrder=+1;
-        EditText et14 = (EditText) findViewById(R.id.goalShortNumber);
-
+        EditText et14=(EditText) findViewById(R.id.goalShortNumber);
+*/
+        /*
         String etString = et1.getText().toString();
         String etString2 = et2.getText().toString();
         String etString3 = "0";
@@ -393,13 +410,12 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
                 }
 
                 intent.putExtra(GoalActivity.GOALENTRY4, combinedShortString);
+*/
+                setResult(RESULT_OK);
+            //} else {
+              //  setResult(RESULT_CANCELED);
+            //}
 
-                setResult(RESULT_OK, intent);
-            } else {
-                setResult(RESULT_CANCELED);
-            }
-
-            super.finish();
-        }
+        super.finish();
     }
 }

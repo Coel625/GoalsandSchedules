@@ -40,14 +40,14 @@ public class DbDataSource {
         contentValues.put(MySqlLiteHelper.LongTermColumns.description.toString(), descriptionStr);
         contentValues.put(MySqlLiteHelper.LongTermColumns.progress.toString(), progressStr);
 
-        long id = database.insert(LONG_TERM_TABLE,
+        long id = database.insert(MySqlLiteHelper.LONG_TERM_TABLE,
                 null, contentValues);
 
         String[] columnNames = MySqlLiteHelper.LongTermColumns.names();
 
-        Cursor cursor = database.query(LONG_TERM_TABLE,
+        Cursor cursor = database.query(MySqlLiteHelper.LONG_TERM_TABLE,
                 columnNames,
-                longTerm_id + " = " + id,
+                MySqlLiteHelper.LongTermColumns.longTerm_id + " = " + id,
                 null, null, null, null
         );
 
@@ -57,11 +57,9 @@ public class DbDataSource {
 
         return longtermgoal;
     }
-    public Integer currentLongTermID(){
-        int currentLongTermID = 0;
-        Cursor cursor = database.rawQuery("SELECT MAX(longterm_id) FROM LONG_TERM_TABLE", null );
-        cursor.moveToFirst();
-        currentLongTermID = cursor.getInt(0);
+    public String currentLongTermID(){
+        String currentLongTermID;
+        currentLongTermID = database.rawQuery("SELECT MAX(longTerm_id) FROM LONG_TERM_TABLE ", null ).toString();
         return currentLongTermID;
     }
     public List<LongTermGoal> getAllLongTermGoals() {
