@@ -23,7 +23,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             ShortTermColumns.longTerm_id + " TEXT NOT NULL , " +
             ShortTermColumns.title + " TEXT NOT NULL , " +
             ShortTermColumns.description + " TEXT NOT NULL , "+
-            ShortTermColumns.order + " TEXT NOT NULL )";
+            ShortTermColumns.sortOrder + " TEXT NOT NULL )";
 
     private static final String CREATE_SCHEDULE_TABLE = " CREATE TABLE " + SCHEDULE_TABLE + " (" +
             ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
@@ -48,7 +48,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     public enum ShortTermColumns {
-        shortTerm_id, longTerm_id, title, description, order;
+        shortTerm_id, longTerm_id, title, description, sortOrder;
 
         public static String[] names() {
             ShortTermColumns[] v=values();
@@ -145,7 +145,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         ShortTermColumns.longTerm_id + " TEXT  NOT NULL , " +
                         ShortTermColumns.title + " TEXT NOT NULL , " +
                         ShortTermColumns.description + " TEXT NOT NULL ," +
-                        ShortTermColumns.order + " TEXT NOT NULL )";
+                        ShortTermColumns.sortOrder + " TEXT NOT NULL )";
                 db.execSQL(sql);
 
                 // copy the data we want from the old table
@@ -155,7 +155,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         ShortTermColumns.longTerm_id + ", " +
                         ShortTermColumns.title + ", " +
                         ShortTermColumns.description + ", " +
-                        ShortTermColumns.order +
+                        ShortTermColumns.sortOrder +
                         " from tmp";
                 db.execSQL(sql);
                 // copy table that needs column dropped

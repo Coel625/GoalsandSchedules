@@ -109,7 +109,7 @@ public class DbDataSource {
         contentValues.put(MySqlLiteHelper.ShortTermColumns.longTerm_id.toString(), longterm_idStr);
         contentValues.put(MySqlLiteHelper.ShortTermColumns.title.toString(), titleStr);
         contentValues.put(MySqlLiteHelper.ShortTermColumns.description.toString(), descriptionStr);
-        contentValues.put(MySqlLiteHelper.ShortTermColumns.order.toString(), orderStr);
+        contentValues.put(MySqlLiteHelper.ShortTermColumns.sortOrder.toString(), orderStr);
 
         long id = database.insert(MySqlLiteHelper.SHORT_TERM_TABLE,
                 null, contentValues);
@@ -164,7 +164,7 @@ public class DbDataSource {
         String description = cursor.getString(MySqlLiteHelper.ShortTermColumns.description.ordinal());
         shorttermgoal.setDescription(description);
 
-        String order = cursor.getString(MySqlLiteHelper.ShortTermColumns.order.ordinal());
+        String order = cursor.getString(MySqlLiteHelper.ShortTermColumns.sortOrder.ordinal());
         shorttermgoal.setOrder(order);
 
         return shorttermgoal;
