@@ -2,7 +2,6 @@ package edu.apsu.csci.goalsandschedules;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +20,22 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         setContentView(R.layout.activity_goalcreation);
 
         Button b=(Button) findViewById(R.id.goalsubmit_button);
-        b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b.setOnClickListener(this);
+
+        Bundle recdData = getIntent().getExtras();
+        if (recdData != null) {
+            String goalTitle = recdData.getString("goalTitle");
+            EditText et1=(EditText) findViewById(R.id.goalTitleEdit);
+            et1.setText(goalTitle);
+
+            String goalDesc = recdData.getString("goalDesc");
+            EditText et2=(EditText) findViewById(R.id.goalDescEdit);
+            et2.setText(goalDesc);
+
+            String goalShort = recdData.getString("goalShort");
+            EditText et4=(EditText) findViewById(R.id.goalTitleEdit2);
+            et4.setText(goalShort);
+        }
     }
 
     @Override
@@ -88,7 +101,7 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
 
         int subGoalValue;
         if (etString14.equals("")) {
-            subGoalValue = 1;
+            subGoalValue = 0;
         } else {
             subGoalValue = Integer.parseInt(etString14);
         }
@@ -105,8 +118,8 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         CheckBox checkBox4 = (CheckBox) findViewById(R.id.subGoalCheck4);
         CheckBox checkBox5 = (CheckBox) findViewById(R.id.subGoalCheck5);
 
-        if (etString.equals("") || etString2.equals("")) {
-            Toast.makeText(this, "Please write down the titles and descriptions for the main goal and two subgoals", Toast.LENGTH_LONG).show();
+        if (etString.equals("") || etString2.equals("") || etString14.equals("")) {
+            Toast.makeText(this, "Please fill in all of the necessary fields", Toast.LENGTH_LONG).show();
         } else {
             if (!(etString.equals("")) || !(etString2.equals(""))) {
                 intent.putExtra(GoalActivity.GOALENTRY1, etString);

@@ -88,6 +88,14 @@ public class GoalActivity extends ListActivity implements View.OnClickListener {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
+        List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+        LongTermGoal ltg = longTermGoal.get(position);
+        String LTGTitleString = ltg.getTitle();
+        String LTGDescString = ltg.getDescription();
+        String LTGShortString = ltg.getSubgoal();
+        intent.putExtra("goalTitle",LTGTitleString);
+        intent.putExtra("goalDesc",LTGDescString);
+        intent.putExtra("goalShort",LTGShortString);
         startActivity(intent);
     }
 
