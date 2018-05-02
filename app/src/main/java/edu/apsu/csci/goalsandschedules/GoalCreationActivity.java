@@ -67,15 +67,49 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         String et1Str = et1.getText().toString();
         EditText et2=(EditText) findViewById(R.id.goalDescEdit);
         String et2Str = et2.getText().toString();
+        String shortGoalString = "";
 
         EditText et4=(EditText) findViewById(R.id.goalTitleEdit2);
+        String et4Str = et4.getText().toString();
+        if (!(et4Str.equals(""))) {
+            shortGoalString += et4.getText().toString() + " | ";
+        }
+
         EditText et5=(EditText) findViewById(R.id.goalDescEdit2);
+
+        EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
+        String et6Str = et6.getText().toString();
+        if (!(et6Str.equals(""))) {
+            shortGoalString += et6.getText().toString() + " | ";
+        }
+
+        EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
+
+        EditText et8=(EditText) findViewById(R.id.goalTitleEdit4);
+        String et8Str = et8.getText().toString();
+        if (!(et8Str.equals(""))) {
+            shortGoalString += et8.getText().toString() + " | ";
+        }
+
+        EditText et9=(EditText) findViewById(R.id.goalDescEdit4);
+
+        EditText et10=(EditText) findViewById(R.id.goalTitleEdit5);
+        String et10Str = et10.getText().toString();
+        if (!(et10Str.equals(""))) {
+            shortGoalString += et10.getText().toString() + " | ";
+        }
+
+        EditText et11=(EditText) findViewById(R.id.goalDescEdit5);
+
+        EditText et12=(EditText) findViewById(R.id.goalTitleEdit6);
+        String et12Str = et12.getText().toString();
+        if (!(et12Str.equals(""))) {
+            shortGoalString += et12.getText().toString() + " | ";
+        }
+
+        EditText et13=(EditText) findViewById(R.id.goalDescEdit6);
         //dataSource.createShortTermGoal(currentLongTermID.toString(), et4.getText().toString(), et5.getText().toString(), sortOrder.toString());
-        dataSource.createLongTermGoal(et1Str,et2Str, et4.getText().toString(), "50");
-        et1.getText().clear();
-        et2.getText().clear();
-        et4.getText().clear();
-        et5.getText().clear();
+
 
         /*EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
         EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
@@ -110,7 +144,7 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         sortOrder=+1;
         EditText et14=(EditText) findViewById(R.id.goalShortNumber);
 */
-        /*
+
         String etString = et1.getText().toString();
         String etString2 = et2.getText().toString();
         String etString3 = "0";
@@ -124,6 +158,8 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         String etString11 = et11.getText().toString();
         String etString12 = et12.getText().toString();
         String etString13 = et13.getText().toString();
+
+        EditText et14=(EditText) findViewById(R.id.goalShortNumber);
         String etString14 = et14.getText().toString();
 
         int subGoalValue;
@@ -317,9 +353,10 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
                     combinedShortString = etString6;
                 } else if (checkBox2.isChecked() && !(checkBox.isChecked())) {
                     combinedShortString = etString4;
-                } else if ((checkBox.isChecked() && checkBox2.isChecked()) ||
-                        !(checkBox.isChecked()) && !(checkBox2.isChecked())) {
+                } else if ((checkBox.isChecked() && checkBox2.isChecked())) {
                     combinedShortString = "";
+                } else if (!(checkBox.isChecked()) && !(checkBox2.isChecked())) {
+                    combinedShortString = etString4 + " | " + etString6;
                 }
 
                 if (!(etString8.equals("")) && !(etString9.equals("")) && etString10.equals("") && etString11.equals("") &&
@@ -415,13 +452,29 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
                     combinedShortString += "| Unspecified";
                 }
 
-                intent.putExtra(GoalActivity.GOALENTRY4, combinedShortString);
-*/
-                setResult(RESULT_OK);
-            //} else {
-              //  setResult(RESULT_CANCELED);
-            //}
+                dataSource.createLongTermGoal(et1Str, et2Str, combinedShortString, etString3);
+                et1.getText().clear();
+                et2.getText().clear();
+                et4.getText().clear();
+                et5.getText().clear();
+                et6.getText().clear();
+                et7.getText().clear();
+                et8.getText().clear();
+                et9.getText().clear();
+                et10.getText().clear();
+                et11.getText().clear();
+                et12.getText().clear();
+                et13.getText().clear();
 
-        super.finish();
+                intent.putExtra(GoalActivity.GOALENTRY4, combinedShortString);
+
+                setResult(RESULT_OK);
+                //} else {
+                //  setResult(RESULT_CANCELED);
+                //}
+
+                super.finish();
+            }
+        }
     }
 }

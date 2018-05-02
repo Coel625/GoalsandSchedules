@@ -1,7 +1,9 @@
 package edu.apsu.csci.goalsandschedules;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -87,7 +90,7 @@ public class GoalActivity extends ListActivity implements View.OnClickListener {
 
         ArrayAdapter<LongTermGoal> adapter = new ArrayAdapter<LongTermGoal>(this,
                 R.layout.entry_set, R.id.goalListNameData, longTermGoal);
-        setListAdapter(new MultipleAdapter(GoalActivity.this, R.layout.entry_set, longTermGoal));
+        setListAdapter(new MultipleGoalAdapter(GoalActivity.this, R.layout.entry_set, longTermGoal));
     }
 
     @Override
@@ -124,6 +127,21 @@ public class GoalActivity extends ListActivity implements View.OnClickListener {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         //Toast.makeText(this, "Id: " + id , Toast.LENGTH_LONG).show();
 
+        //final List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+
+        //ArrayAdapter<LongTermGoal> adapter = (ArrayAdapter<LongTermGoal>) getListAdapter();
+        //adapter.remove(longTermGoal);
+        //adapter.notifyDataSetChanged();
+
+        //final List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+        //ListView lv = (ListView) findViewById(android.R.id.list);
+        //lv.invalidateViews();
+
+        //final ArrayAdapter<LongTermGoal> adapter = new ArrayAdapter<LongTermGoal>(this,
+        //        R.layout.entry_set, R.id.goalListNameData, longTermGoal);
+        //adapter.clear();
+        //adapter.setNotifyOnChange(true);
+        //lv.setAdapter(adapter);
         Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
         startActivity(intent);
         //updateView(position);
@@ -172,6 +190,7 @@ public class GoalActivity extends ListActivity implements View.OnClickListener {
 
         if(v == null)
             return;
+
 
         //if (index == 0) {
             dataSource = new DbDataSource(getApplicationContext());

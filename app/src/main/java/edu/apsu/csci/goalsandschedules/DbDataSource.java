@@ -58,6 +58,7 @@ public class DbDataSource {
 
         return longtermgoal;
     }
+
     public String currentLongTermID(){
         String currentLongTermID;
         currentLongTermID = database.rawQuery("SELECT MAX(longTerm_id) FROM LONG_TERM_TABLE ", null ).toString();

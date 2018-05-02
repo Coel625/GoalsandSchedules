@@ -75,11 +75,11 @@ public class ScheduleActivity extends ListActivity implements View.OnClickListen
 
         dataSource.open();
 
-        List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+        List<Schedule> schedule = dataSource.getAllSchedules();
 
-        ArrayAdapter<LongTermGoal> adapter = new ArrayAdapter<LongTermGoal>(this,
-                R.layout.entry_set, R.id.goalListNameData, longTermGoal);
-        setListAdapter(new MultipleAdapter(ScheduleActivity.this, R.layout.entry_set, longTermGoal));
+        ArrayAdapter<Schedule> adapter = new ArrayAdapter<Schedule>(this,
+                R.layout.entry_set2, R.id.scheduleEntryTimes, schedule);
+        setListAdapter(new MultipleScheduleAdapter(ScheduleActivity.this, R.layout.entry_set2, schedule));
     }
 
     @Override
@@ -96,17 +96,18 @@ public class ScheduleActivity extends ListActivity implements View.OnClickListen
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        if (item.getItemId() == R.id.menu_add_goal) {
+        if (item.getItemId() == R.id.menu_add_schedule) {
             //Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
             //startActivityForResult(intent, GOAL_TASK1);
-            String longTermTitleString = "times";
-            String longTermDescString = "day";
-            String longTermSubString = "subgoal";
-            String longTermProgressString = "description";
-            LongTermGoal longTermGoal = dataSource.createLongTermGoal(longTermTitleString, longTermDescString, longTermSubString, longTermProgressString);
+            String scheduleShortId = "1";
+            String scheduleDateString = "Sunday";
+            String scheduleStartString = "1";
+            String scheduleEndString = "1";
+            String scheduleDescription = "description";
+            Schedule schedule = dataSource.createSchedule(scheduleShortId, scheduleDateString, scheduleStartString, scheduleEndString, scheduleDescription);
 
-            ArrayAdapter<LongTermGoal> adapter = (ArrayAdapter<LongTermGoal>) getListAdapter();
-            adapter.add(longTermGoal);
+            ArrayAdapter<Schedule> adapter = (ArrayAdapter<Schedule>) getListAdapter();
+            adapter.add(schedule);
             adapter.notifyDataSetChanged();
         }
         return super.onMenuItemSelected(featureId, item);
@@ -116,7 +117,7 @@ public class ScheduleActivity extends ListActivity implements View.OnClickListen
     protected void onListItemClick(ListView l, View v, int position, long id) {
         //Toast.makeText(this, "Id: " + id , Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ScheduleCreationActivity.class);
         startActivity(intent);
         //updateView(position);
     }
@@ -154,11 +155,11 @@ public class ScheduleActivity extends ListActivity implements View.OnClickListen
         if (!(schedule.size()-1 < 0)) {
             Schedule sc = schedule.get(schedule.size() - 1);
             TextView SC1Time = (TextView) findViewById(R.id.scheduleEntryTimes);
-            SC1Time.setText(sc.getDescription());
+            SC1Time.setText(sc.getStart());
             TextView SCDate = (TextView) findViewById(R.id.scheduleEntryDate);
-            SCDate.setText(sc.getDescription());
+            SCDate.setText(sc.getDate().toString());
             TextView SCShort = (TextView) findViewById(R.id.scheduleEntryShort);
-            SCShort.setText(sc.getDescription());
+            SCShort.setText(sc.getShortterm_id());
             TextView SCDesc = (TextView) findViewById(R.id.scheduleEntryDesc);
             SCDesc.setText(sc.getDescription());
 

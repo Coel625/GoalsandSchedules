@@ -12,12 +12,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultipleAdapter extends ArrayAdapter<LongTermGoal> {
+public class MultipleGoalAdapter extends ArrayAdapter<LongTermGoal> {
     private final Context context;
     private final List<LongTermGoal> data;
     private final int layoutResourceId;
 
-    public MultipleAdapter(Context context, int layoutResourceId, List<LongTermGoal> data) {
+    public MultipleGoalAdapter(Context context, int layoutResourceId, List<LongTermGoal> data) {
         super(context, layoutResourceId, data);
         this.context = context;
         this.data = data;

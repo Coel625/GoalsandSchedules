@@ -91,9 +91,6 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
         String spinnerString = spinner.getSelectedItem().toString();
         String spinnerString2 = spinner2.getSelectedItem().toString();
         String etString5 = et5.getText().toString();
-        dataSource.createSchedule(spinnerString2, spinnerString, etString, etString3, etString5);
-        //dataSource.createSchedule(etString5, etString5, etString5, etString5, etString5);
-        et5.getText().clear();
 
         if (etString5.equals("") || spinnerString.equals("Select a date:") || spinnerString2.equals("Select one of your short-term goals:") ||
                 etStartFirstInt == 99 || etStartLastInt == 99 || etEndFirstInt == 99 || etEndLastInt == 99 ||
@@ -116,14 +113,15 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
                 }
 
                 String combinedTimesString = "From " + etString + ":" + etString2 + " to " + etString3 + ":" + etString4;
-                intent.putExtra(ScheduleActivity.SCHEDULEDATA1, combinedTimesString);
-
                 String combinedDateString = "on " + spinnerString;
-                intent.putExtra(ScheduleActivity.SCHEDULEDATA2, combinedDateString);
-
                 String combinedShortString = "Short-Term Goals: " + spinnerString2;
-                intent.putExtra(ScheduleActivity.SCHEDULEDATA3, combinedShortString);
 
+                dataSource.createSchedule(combinedShortString, combinedDateString, combinedTimesString, etString5, etString5);
+                et5.getText().clear();
+
+                intent.putExtra(ScheduleActivity.SCHEDULEDATA1, combinedTimesString);
+                intent.putExtra(ScheduleActivity.SCHEDULEDATA2, combinedDateString);
+                intent.putExtra(ScheduleActivity.SCHEDULEDATA3, combinedShortString);
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA4, etString5);
 
                 setResult(RESULT_OK, intent);
