@@ -33,11 +33,12 @@ public class DbDataSource {
     }
 
     //Long Term Goal
-    public LongTermGoal createLongTermGoal(String titleStr, String descriptionStr, String progressStr) {
+    public LongTermGoal createLongTermGoal(String titleStr, String descriptionStr, String subGoal, String progressStr) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(MySqlLiteHelper.LongTermColumns.title.toString(), titleStr);
         contentValues.put(MySqlLiteHelper.LongTermColumns.description.toString(), descriptionStr);
+        contentValues.put(MySqlLiteHelper.LongTermColumns.subgoal.toString(), subGoal);
         contentValues.put(MySqlLiteHelper.LongTermColumns.progress.toString(), progressStr);
 
         long id = database.insert(MySqlLiteHelper.LONG_TERM_TABLE,
@@ -93,6 +94,9 @@ public class DbDataSource {
 
         String description = cursor.getString(MySqlLiteHelper.LongTermColumns.description.ordinal());
         longtermgoal.setDescription(description);
+
+        String subgoal = cursor.getString(MySqlLiteHelper.LongTermColumns.subgoal.ordinal());
+        longtermgoal.setSubgoal(subgoal);
 
         int progress = cursor.getInt(MySqlLiteHelper.LongTermColumns.progress.ordinal());
         longtermgoal.setProgress(progress);
@@ -169,11 +173,10 @@ public class DbDataSource {
     }
 
     //Schedule
-    public Schedule createSchedule(String shortterm_idStr, String titleStr, String dateStr, String startStr, String endStr, String descriptionStr) {
+    public Schedule createSchedule(String shortterm_idStr, String dateStr, String startStr, String endStr, String descriptionStr) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(MySqlLiteHelper.ScheduleColumns.shortTerm_id.toString(), shortterm_idStr);
-        contentValues.put(MySqlLiteHelper.ScheduleColumns.title.toString(), titleStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.date.toString(), dateStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.start.toString(), startStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.end.toString(), endStr);
@@ -207,6 +210,7 @@ public class DbDataSource {
                 null, null, null, null, null);
 
         cursor.moveToNext();
+
         while (!cursor.isAfterLast()) {
             Schedule schedule = cursorToSchedule(cursor);
             schedules.add(schedule);
@@ -226,6 +230,7 @@ public class DbDataSource {
         int shorttermId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.shortTerm_id.ordinal());
         schedule.setSchedule_id(shorttermId);
 
+
         String dateStr = cursor.getString(MySqlLiteHelper.ScheduleColumns.date.ordinal());
 
         DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
@@ -236,9 +241,6 @@ public class DbDataSource {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        String title = cursor.getString(MySqlLiteHelper.ScheduleColumns.title.ordinal());
-        schedule.setTitle(title);
 
         int start = cursor.getInt(MySqlLiteHelper.ScheduleColumns.start.ordinal());
         schedule.setStart(start);

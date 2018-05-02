@@ -16,10 +16,12 @@ import android.widget.Toast;
 public class ScheduleCreationActivity extends Activity implements View.OnClickListener {
 
     private LinearLayout mainLayout;
+    private DbDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataSource=new DbDataSource(getApplicationContext());
         setContentView(R.layout.activity_schedulecreation);
 
         mainLayout = (LinearLayout) findViewById(R.id.schedulecreation_layout);
@@ -41,6 +43,8 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
     @Override
     public void finish() {
 
+        dataSource = new DbDataSource(getApplicationContext());
+        dataSource.open();
         Intent intent = new Intent();
 
         EditText et1 = (EditText) findViewById(R.id.entryStartTimeFirstEdit);
@@ -87,6 +91,9 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
         String spinnerString = spinner.getSelectedItem().toString();
         String spinnerString2 = spinner2.getSelectedItem().toString();
         String etString5 = et5.getText().toString();
+        dataSource.createSchedule(spinnerString2, spinnerString, etString, etString3, etString5);
+        //dataSource.createSchedule(etString5, etString5, etString5, etString5, etString5);
+        et5.getText().clear();
 
         if (etString5.equals("") || spinnerString.equals("Select a date:") || spinnerString2.equals("Select one of your short-term goals:") ||
                 etStartFirstInt == 99 || etStartLastInt == 99 || etEndFirstInt == 99 || etEndLastInt == 99 ||

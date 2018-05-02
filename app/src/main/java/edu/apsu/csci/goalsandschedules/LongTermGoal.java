@@ -4,6 +4,7 @@ public class LongTermGoal {
     private int longterm_id;
     private String title;
     private String description;
+    private String subgoal;
     private int progress;
 
     public LongTermGoal() {
@@ -16,6 +17,9 @@ public class LongTermGoal {
 
     public String getDescription(){return description;}
     public void setDescription(String description){this.description=description;}
+
+    public String getSubgoal(){return subgoal;}
+    public void setSubgoal(String subgoal){this.subgoal=subgoal;}
 
     public int getProgress(){return progress;}
     public void setProgress(int progress) {this.progress=progress;}

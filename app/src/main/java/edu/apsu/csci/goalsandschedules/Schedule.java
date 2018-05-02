@@ -5,7 +5,6 @@ import java.util.Date;
 public class Schedule {
     private int schedule_id;
     private int shortterm_id;
-    private String title;
     private Date date;
     private int start;
     private int end;
@@ -25,14 +24,6 @@ public class Schedule {
 
     public void setShortterm_id(int shortterm_id) {
         this.shortterm_id=shortterm_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title=title;
     }
 
     public Date getDate() {
@@ -65,15 +56,5 @@ public class Schedule {
 
     public void setDescription(String description) {
         this.description=description;
-    }
-
-    @Override
-    public String toString() {
-        String tmp=title;
-        if (tmp.length() > 20) {
-            tmp=tmp.substring(0, 20) + "...";
-        }
-        return tmp;
-
     }
 }

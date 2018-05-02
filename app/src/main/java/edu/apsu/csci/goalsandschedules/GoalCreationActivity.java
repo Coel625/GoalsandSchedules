@@ -67,16 +67,22 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         String et1Str = et1.getText().toString();
         EditText et2=(EditText) findViewById(R.id.goalDescEdit);
         String et2Str = et2.getText().toString();
-        dataSource.createLongTermGoal(et1Str,et2Str, "0");
-        et1.getText().clear();
-        et2.getText().clear();
 
         EditText et4=(EditText) findViewById(R.id.goalTitleEdit2);
         EditText et5=(EditText) findViewById(R.id.goalDescEdit2);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et4.getText().toString(), et5.getText().toString(), sortOrder.toString());
+        //dataSource.createShortTermGoal(currentLongTermID.toString(), et4.getText().toString(), et5.getText().toString(), sortOrder.toString());
+        dataSource.createLongTermGoal(et1Str,et2Str, et4.getText().toString(), "50");
+        et1.getText().clear();
+        et2.getText().clear();
         et4.getText().clear();
         et5.getText().clear();
-        sortOrder=+1;
+
+        /*EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
+        EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
+        dataSource.createShortTermGoal(currentLongTermID.toString(), et6.getText().toString(), et7.getText().toString(), sortOrder.toString());
+        et6.getText().clear();
+        et7.getText().clear(); */
+        //sortOrder=+1;
         /*
         EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
         EditText et7=(EditText) findViewById(R.id.goalDescEdit3);

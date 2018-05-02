@@ -16,6 +16,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             LongTermColumns.longTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
             LongTermColumns.title + " TEXT NOT NULL , " +
             LongTermColumns.description + " TEXT NOT NULL , " +
+            LongTermColumns.subgoal + " TEXT NOT NULL , " +
             LongTermColumns.progress + " TEXT NOT NULL )";
 
     private static final String CREATE_SHORT_TERM_TABLE = "CREATE TABLE " + SHORT_TERM_TABLE + " (" +
@@ -28,14 +29,13 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     private static final String CREATE_SCHEDULE_TABLE = " CREATE TABLE " + SCHEDULE_TABLE + " (" +
             ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
             ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
-            ScheduleColumns.title + "  TEXT NOT NULL , " +
             ScheduleColumns.date + "  TEXT NOT NULL , " +
             ScheduleColumns.start + " TEXT NOT NULL , " +
             ScheduleColumns.end + " TEXT NOT NULL , " +
             ScheduleColumns.description + " TEXT NOT NULL )";
 
     public enum LongTermColumns {
-        longTerm_id, title, description, progress;
+        longTerm_id, title, description, subgoal, progress;
 
         public static String[] names() {
             LongTermColumns[] v=values();
@@ -61,7 +61,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     public enum ScheduleColumns {
-        schedule_id, shortTerm_id, title, date, start, end, description;
+        schedule_id, shortTerm_id, date, start, end, description;
 
         public static String[] names() {
             ScheduleColumns[] v=values();
@@ -123,6 +123,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         LongTermColumns.longTerm_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         LongTermColumns.title + " TEXT NOT NULL , " +
                         LongTermColumns.description + " TEXT NOT NULL , " +
+                        LongTermColumns.subgoal + " TEXT NOT NULL , " +
                         LongTermColumns.progress + " TEXT NOT NULL )";
                 db.execSQL(sql);
 
@@ -132,6 +133,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         LongTermColumns.longTerm_id + ", " +
                         LongTermColumns.title + ", " +
                         LongTermColumns.description + "," +
+                        LongTermColumns.subgoal + "," +
                         LongTermColumns.progress +
                         " from tmp";
                 db.execSQL(sql);
@@ -166,7 +168,6 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 sql="CREATE TABLE " + SCHEDULE_TABLE + " (" +
                         ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
-                        ScheduleColumns.title + "  TEXT NOT NULL , " +
                         ScheduleColumns.date + "  TEXT NOT NULL , " +
                         ScheduleColumns.start + " TEXT NOT NULL , " +
                         ScheduleColumns.end + " TEXT NOT NULL , " +
@@ -178,7 +179,6 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         " select " +
                         ScheduleColumns.schedule_id + ", " +
                         ScheduleColumns.shortTerm_id + ", " +
-                        ScheduleColumns.title + ", " +
                         ScheduleColumns.date + ", " +
                         ScheduleColumns.start + "," +
                         ScheduleColumns.end + ", " +

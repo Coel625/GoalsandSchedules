@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/goal_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9be57"
+    android:orientation="vertical"
+    tools:context="edu.apsu.csci.goalsandschedules.ScheduleActivity">
+
+    <LinearLayout
+        android:id="@+id/scheduleEntry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_entry_list"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/scheduleEntryTimes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="From XX:XX to XX:XX"
+            android:textColor="#9739db"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/scheduleEntryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="on XDay"
+            android:textColor="#9739db"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/scheduleEntryShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Short-Term Goals: X"
+            android:textColor="#9739db"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/scheduleEntryDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#9739db"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

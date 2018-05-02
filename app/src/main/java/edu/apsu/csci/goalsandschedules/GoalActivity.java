@@ -1,20 +1,28 @@
 package edu.apsu.csci.goalsandschedules;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GoalActivity extends Activity implements View.OnClickListener {
+public class GoalActivity extends ListActivity implements View.OnClickListener {
 
     private DbDataSource dataSource;
     private static final int GOAL_TASK1 = 1000;
@@ -31,11 +39,15 @@ public class GoalActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //dataSource = new DbDataSource(getApplicationContext());
+        setContentView(R.layout.activity_goal);
+
+        dataSource = new DbDataSource(getApplicationContext());
+
         //dataSource.open();
         //dataSource.createLongTermGoal("0","0","0");
         //dataSource.close();
-        setContentView(R.layout.activity_goal);
+
+        //loadForm();
 
         Button b = (Button) findViewById(R.id.goal_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -49,10 +61,7 @@ public class GoalActivity extends Activity implements View.OnClickListener {
         b3.setPaintFlags(b3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b3.setOnClickListener(this);
 
-        Button b4 = (Button) findViewById(R.id.goaladd_button);
-        b4.setOnClickListener(this);
-
-        LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.goalList);
+        /*LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.goalEntrySlot);
         linearLayout1.setOnClickListener(this);
 
         LinearLayout linearLayout2 = (LinearLayout) findViewById(R.id.goalList2);
@@ -65,7 +74,59 @@ public class GoalActivity extends Activity implements View.OnClickListener {
         linearLayout4.setOnClickListener(this);
 
         LinearLayout linearLayout5 = (LinearLayout) findViewById(R.id.goalList5);
-        linearLayout5.setOnClickListener(this);
+        linearLayout5.setOnClickListener(this); */
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dataSource.open();
+
+        List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+
+        ArrayAdapter<LongTermGoal> adapter = new ArrayAdapter<LongTermGoal>(this,
+                R.layout.entry_set, R.id.goalListNameData, longTermGoal);
+        setListAdapter(new MultipleAdapter(GoalActivity.this, R.layout.entry_set, longTermGoal));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        dataSource.close();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.goal_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if (item.getItemId() == R.id.menu_add_goal) {
+            //Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
+            //startActivityForResult(intent, GOAL_TASK1);
+            String longTermTitleString = "title";
+            String longTermDescString = "description";
+            String longTermSubString = "subgoal";
+            String longTermProgressString = "0";
+            LongTermGoal longTermGoal = dataSource.createLongTermGoal(longTermTitleString, longTermDescString, longTermSubString, longTermProgressString);
+
+            ArrayAdapter<LongTermGoal> adapter = (ArrayAdapter<LongTermGoal>) getListAdapter();
+            adapter.add(longTermGoal);
+            adapter.notifyDataSetChanged();
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        //Toast.makeText(this, "Id: " + id , Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
+        startActivity(intent);
+        //updateView(position);
     }
 
     @Override
@@ -76,7 +137,7 @@ public class GoalActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.online_button) {
             Intent intent = new Intent(getApplicationContext(), OnlineActivity.class);
             startActivity(intent);
-        } else if (v.getId() == R.id.goalList) {
+        } else if (v.getId() == R.id.goalEntrySlot) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
             startActivityForResult(intent, GOAL_TASK1);
         } else if (v.getId() == R.id.goalList2) {
@@ -91,9 +152,6 @@ public class GoalActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.goalList5) {
             Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
             startActivityForResult(intent, GOAL_TASK5);
-        } else if (v.getId() == R.id.goaladd_button) {
-            Intent intent = new Intent(getApplicationContext(), GoalCreationActivity.class);
-            startActivity(intent);
         }
     }
     /*
@@ -107,29 +165,120 @@ public class GoalActivity extends Activity implements View.OnClickListener {
         super.onStop();
         dataSource.close();
     }*/
+
+    private void updateView(int index){
+        View v = getListView().getChildAt(index -
+                getListView().getFirstVisiblePosition());
+
+        if(v == null)
+            return;
+
+        //if (index == 0) {
+            dataSource = new DbDataSource(getApplicationContext());
+            dataSource.open();
+            List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+           // if (!(longTermGoal.size()-1 < 0)) {
+                LongTermGoal ltg = longTermGoal.get(longTermGoal.size()-1);
+                TextView LTG1Title = (TextView) findViewById(R.id.goalListNameData);
+                LTG1Title.setText(ltg.getTitle());
+                TextView LTGDescription = (TextView) findViewById(R.id.goalListDescData);
+                LTGDescription.setText(ltg.getDescription());
+                ProgressBar LTGProgress = (ProgressBar) findViewById(R.id.progressBar);
+                LTGProgress.setProgress(ltg.getProgress());
+                List<ShortTermGoal> shortTermGoal = dataSource.getAllShortTermGoals();
+                ShortTermGoal stg = shortTermGoal.get(shortTermGoal.size() - 1);
+                TextView STGTitle = (TextView) findViewById(R.id.goalListShortData);
+                STGTitle.setText(stg.getTitle());
+           // }
+       // } else if (index == 1) {
+       //     TextView someText2 = (TextView) v.findViewById(R.id.goalListDescData);
+       //     someText2.setText("Hi! I sussed you manually!");
+       // }
+
+        /*ProgressBar LTGProgress = (ProgressBar) findViewById(R.id.progressBar);
+        LTGProgress.setProgress(60);
+
+        TextView someText3 = (TextView) v.findViewById(R.id.goalListShortData);
+        someText3.setText("Hi! I updated you manually!"); */
+    }
+
     private void loadForm(){
+
         dataSource = new DbDataSource(getApplicationContext());
         dataSource.open();
         List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
-        LongTermGoal ltg = longTermGoal.get(longTermGoal.size()-1);
-        TextView LTG1Title = (TextView) findViewById(R.id.goalListNameData);
-        LTG1Title.setText(ltg.getTitle());
-        TextView LTGDescription = (TextView) findViewById(R.id.goalListDescData);
-        LTGDescription.setText(ltg.getDescription());
-        List<ShortTermGoal> shortTermGoal = dataSource.getAllShortTermGoals();
-        ShortTermGoal stg = shortTermGoal.get(shortTermGoal.size()-1);
-        TextView STGTitle = (TextView) findViewById(R.id.goalListShortData);
-        STGTitle.setText(stg.getTitle());
+        //if(!(longTermGoal.size()-1 < 0)) {
+            LongTermGoal ltg = longTermGoal.get(longTermGoal.size() - 1);
+            TextView LTG1Title = (TextView) findViewById(R.id.goalListNameData);
+            LTG1Title.setText(ltg.getTitle());
+            TextView LTGDescription = (TextView) findViewById(R.id.goalListDescData);
+            LTGDescription.setText(ltg.getDescription());
+            ProgressBar LTGProgress = (ProgressBar) findViewById(R.id.progressBar);
+            LTGProgress.setProgress(ltg.getProgress());
+            List<ShortTermGoal> shortTermGoal = dataSource.getAllShortTermGoals();
+            ShortTermGoal stg = shortTermGoal.get(shortTermGoal.size() - 1);
+            TextView STGTitle = (TextView) findViewById(R.id.goalListShortData);
+            STGTitle.setText(stg.getTitle());
+            //ArrayAdapter<LongTermGoal> adapter = (ArrayAdapter<LongTermGoal>) getListAdapter();
+            //adapter.add(ltg);
+            //adapter.notifyDataSetChanged();
 
-        ltg = longTermGoal.get(longTermGoal.size()-2);
-        LTG1Title = (TextView) findViewById(R.id.goalListNameData2);
-        LTG1Title.setText(ltg.getTitle());
-        LTGDescription = (TextView) findViewById(R.id.goalListDescData2);
-        LTGDescription.setText(ltg.getDescription());
-        shortTermGoal = dataSource.getAllShortTermGoals();
-        stg = shortTermGoal.get(shortTermGoal.size()-2);
-        STGTitle = (TextView) findViewById(R.id.goalListShortData2);
-        STGTitle.setText(stg.getTitle());
+            /*if (!(longTermGoal.size() - 2 < 0)) {
+                ltg = longTermGoal.get(longTermGoal.size() - 2);
+                LTG1Title = (TextView) findViewById(R.id.goalListNameData2);
+                LTG1Title.setText(ltg.getTitle());
+                LTGDescription = (TextView) findViewById(R.id.goalListDescData2);
+                LTGDescription.setText(ltg.getDescription());
+                LTGProgress = (ProgressBar) findViewById(R.id.progressBar2);
+                LTGProgress.setProgress(ltg.getProgress());
+                shortTermGoal = dataSource.getAllShortTermGoals();
+                stg = shortTermGoal.get(shortTermGoal.size() - 2);
+                STGTitle = (TextView) findViewById(R.id.goalListShortData2);
+                STGTitle.setText(stg.getTitle());
+            }
+
+            if (!(longTermGoal.size() - 3 < 0)) {
+                ltg = longTermGoal.get(longTermGoal.size() - 3);
+                LTG1Title = (TextView) findViewById(R.id.goalListNameData3);
+                LTG1Title.setText(ltg.getTitle());
+                LTGDescription = (TextView) findViewById(R.id.goalListDescData3);
+                LTGDescription.setText(ltg.getDescription());
+                LTGProgress = (ProgressBar) findViewById(R.id.progressBar3);
+                LTGProgress.setProgress(ltg.getProgress());
+                shortTermGoal = dataSource.getAllShortTermGoals();
+                stg = shortTermGoal.get(shortTermGoal.size() - 3);
+                STGTitle = (TextView) findViewById(R.id.goalListShortData3);
+                STGTitle.setText(stg.getTitle());
+            }
+
+            if (!(longTermGoal.size() - 4 < 0)) {
+                ltg = longTermGoal.get(longTermGoal.size() - 4);
+                LTG1Title = (TextView) findViewById(R.id.goalListNameData4);
+                LTG1Title.setText(ltg.getTitle());
+                LTGDescription = (TextView) findViewById(R.id.goalListDescData4);
+                LTGDescription.setText(ltg.getDescription());
+                LTGProgress = (ProgressBar) findViewById(R.id.progressBar4);
+                LTGProgress.setProgress(ltg.getProgress());
+                shortTermGoal = dataSource.getAllShortTermGoals();
+                stg = shortTermGoal.get(shortTermGoal.size() - 4);
+                STGTitle = (TextView) findViewById(R.id.goalListShortData4);
+                STGTitle.setText(stg.getTitle());
+            }
+
+            if (!(longTermGoal.size() - 5 < 0)) {
+                ltg = longTermGoal.get(longTermGoal.size() - 5);
+                LTG1Title = (TextView) findViewById(R.id.goalListNameData5);
+                LTG1Title.setText(ltg.getTitle());
+                LTGDescription = (TextView) findViewById(R.id.goalListDescData5);
+                LTGDescription.setText(ltg.getDescription());
+                LTGProgress = (ProgressBar) findViewById(R.id.progressBar5);
+                LTGProgress.setProgress(ltg.getProgress());
+                shortTermGoal = dataSource.getAllShortTermGoals();
+                stg = shortTermGoal.get(shortTermGoal.size() - 5);
+                STGTitle = (TextView) findViewById(R.id.goalListShortData5);
+                STGTitle.setText(stg.getTitle());
+            } */
+       // }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

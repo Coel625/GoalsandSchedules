@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/goalEntrySlot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_entry_list"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/goalListName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Goal: "
+        android:textColor="#9739db"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/goalListNameData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#9739db"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/goalListDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Description: "
+        android:textColor="#9739db"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/goalListDescData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#9739db"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/goalListProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Progress: "
+        android:textColor="#9739db"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+    <TextView
+        android:id="@+id/goalListShort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Short-Term Goals: "
+        android:textColor="#9739db"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/goalListShortData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#9739db"
+        android:textSize="20sp" />
+
+</LinearLayout>
