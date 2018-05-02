@@ -6,15 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import static edu.apsu.csci.goalsandschedules.MySqlLiteHelper.LONG_TERM_TABLE;
 import static edu.apsu.csci.goalsandschedules.MySqlLiteHelper.LongTermColumns.longTerm_id;
+import static edu.apsu.csci.goalsandschedules.MySqlLiteHelper.ScheduleColumns.time;
 
 public class DbDataSource {
     private SQLiteDatabase database;
@@ -174,13 +173,12 @@ public class DbDataSource {
     }
 
     //Schedule
-    public Schedule createSchedule(String shortterm_idStr, String dateStr, String startStr, String endStr, String descriptionStr) {
+    public Schedule createSchedule(String shortterm_idStr, String dateStr, String timeStr, String descriptionStr) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(MySqlLiteHelper.ScheduleColumns.shortTerm_id.toString(), shortterm_idStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.date.toString(), dateStr);
-        contentValues.put(MySqlLiteHelper.ScheduleColumns.start.toString(), startStr);
-        contentValues.put(MySqlLiteHelper.ScheduleColumns.end.toString(), endStr);
+        contentValues.put(time.toString(), timeStr);
         contentValues.put(MySqlLiteHelper.ScheduleColumns.description.toString(), descriptionStr);
 
         long id = database.insert(MySqlLiteHelper.SCHEDULE_TABLE,
@@ -228,26 +226,17 @@ public class DbDataSource {
         int scheduleId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.schedule_id.ordinal());
         schedule.setSchedule_id(scheduleId);
 
-        int shorttermId = cursor.getInt(MySqlLiteHelper.ScheduleColumns.shortTerm_id.ordinal());
-        schedule.setSchedule_id(shorttermId);
-
+        String shorttermId = cursor.getString(MySqlLiteHelper.ScheduleColumns.shortTerm_id.ordinal());
+        schedule.setShortterm_id(shorttermId);
 
         String dateStr = cursor.getString(MySqlLiteHelper.ScheduleColumns.date.ordinal());
 
         DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
 
-        try {
-            Date date = dateFormat.parse(dateStr);
-            schedule.setDate(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        schedule.setDate(dateStr);
 
-        int start = cursor.getInt(MySqlLiteHelper.ScheduleColumns.start.ordinal());
-        schedule.setStart(start);
-
-        int end = cursor.getInt(MySqlLiteHelper.ScheduleColumns.end.ordinal());
-        schedule.setEnd(end);
+        String timeStr = cursor.getString(time.ordinal());
+        schedule.setTime(timeStr);
 
         String description = cursor.getString(MySqlLiteHelper.ScheduleColumns.description.ordinal());
         schedule.setDescription(description);

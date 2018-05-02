@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleScheduleAdapter extends ArrayAdapter<Schedule> {
@@ -48,9 +46,9 @@ public class MultipleScheduleAdapter extends ArrayAdapter<Schedule> {
         }
 
         Schedule schedule = data.get(position);
-        String setScheduleTime = "From " + schedule.getStart() + " to " + schedule.getEnd();
-        String setScheduleDate = "on " + schedule.getDate();
-        String setScheduleShort = "Short-term Goal(s): " + schedule.getShortterm_id();
+        String setScheduleTime = schedule.getTime();
+        String setScheduleDate = schedule.getDate();
+        String setScheduleShort = schedule.getShortterm_id();
 
         holder.textView1.setText(setScheduleTime);
         holder.textView2.setText(setScheduleDate);

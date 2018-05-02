@@ -8,13 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class GoalCreationActivity extends Activity implements View.OnClickListener {
 
-    private LinearLayout mainLayout;
     private DbDataSource dataSource;
 
     @Override
@@ -23,38 +20,17 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         dataSource=new DbDataSource(getApplicationContext());
         setContentView(R.layout.activity_goalcreation);
 
-        mainLayout=(LinearLayout) findViewById(R.id.goalcreation_layout);
-
         Button b=(Button) findViewById(R.id.goalsubmit_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b.setOnClickListener(this);
-
-        Button b2=(Button) findViewById(R.id.newSTGoal_button);
-        b2.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        //Button b = (Button) findViewById(R.id.goalsubmit_button);
-        //Button b2 = (Button) findViewById(R.id.newSTGoal_button);
         if (v.getId() == R.id.goalsubmit_button) {
             finish();
-        } else if (v.getId() == R.id.newSTGoal_button) {
-            /*mainLayout.addView(createNewTextView("Temp"));
-            mainLayout.removeView(b2);
-            mainLayout.addView(b2);
-            mainLayout.removeView(b);
-            mainLayout.addView(b); */
         }
     }
-
-    /*private TextView createNewTextView(String text) {
-        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        final TextView textView = new TextView(this);
-        textView.setLayoutParams(lparams);
-        textView.setText("New text: " + text);
-        return textView;
-    } */
 
     @Override
     public void finish() {
@@ -67,83 +43,31 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
         String et1Str = et1.getText().toString();
         EditText et2=(EditText) findViewById(R.id.goalDescEdit);
         String et2Str = et2.getText().toString();
-        String shortGoalString = "";
 
         EditText et4=(EditText) findViewById(R.id.goalTitleEdit2);
         String et4Str = et4.getText().toString();
-        if (!(et4Str.equals(""))) {
-            shortGoalString += et4.getText().toString() + " | ";
-        }
 
         EditText et5=(EditText) findViewById(R.id.goalDescEdit2);
 
         EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
         String et6Str = et6.getText().toString();
-        if (!(et6Str.equals(""))) {
-            shortGoalString += et6.getText().toString() + " | ";
-        }
 
         EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
 
         EditText et8=(EditText) findViewById(R.id.goalTitleEdit4);
         String et8Str = et8.getText().toString();
-        if (!(et8Str.equals(""))) {
-            shortGoalString += et8.getText().toString() + " | ";
-        }
 
         EditText et9=(EditText) findViewById(R.id.goalDescEdit4);
 
         EditText et10=(EditText) findViewById(R.id.goalTitleEdit5);
         String et10Str = et10.getText().toString();
-        if (!(et10Str.equals(""))) {
-            shortGoalString += et10.getText().toString() + " | ";
-        }
 
         EditText et11=(EditText) findViewById(R.id.goalDescEdit5);
 
         EditText et12=(EditText) findViewById(R.id.goalTitleEdit6);
         String et12Str = et12.getText().toString();
-        if (!(et12Str.equals(""))) {
-            shortGoalString += et12.getText().toString() + " | ";
-        }
 
         EditText et13=(EditText) findViewById(R.id.goalDescEdit6);
-        //dataSource.createShortTermGoal(currentLongTermID.toString(), et4.getText().toString(), et5.getText().toString(), sortOrder.toString());
-
-
-        /*EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
-        EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et6.getText().toString(), et7.getText().toString(), sortOrder.toString());
-        et6.getText().clear();
-        et7.getText().clear(); */
-        //sortOrder=+1;
-        /*
-        EditText et6=(EditText) findViewById(R.id.goalTitleEdit3);
-        EditText et7=(EditText) findViewById(R.id.goalDescEdit3);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et6.toString(), et7.toString(), sortOrder.toString());
-        et5.getText().clear();
-        et7.getText().clear();
-        sortOrder=+1;
-        EditText et8=(EditText) findViewById(R.id.goalTitleEdit4);
-        EditText et9=(EditText) findViewById(R.id.goalDescEdit4);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et8.toString(), et9.toString(), sortOrder.toString());
-        et8.getText().clear();
-        et9.getText().clear();
-        sortOrder=+1;
-        EditText et10=(EditText) findViewById(R.id.goalTitleEdit5);
-        EditText et11=(EditText) findViewById(R.id.goalDescEdit5);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et10.toString(), et11.toString(), sortOrder.toString());
-        et10.getText().clear();
-        et11.getText().clear();
-        sortOrder=+1;
-        EditText et12=(EditText) findViewById(R.id.goalTitleEdit6);
-        EditText et13=(EditText) findViewById(R.id.goalDescEdit6);
-        dataSource.createShortTermGoal(currentLongTermID.toString(), et12.toString(), et13.toString(), sortOrder.toString());
-        et12.getText().clear();
-        et13.getText().clear();
-        sortOrder=+1;
-        EditText et14=(EditText) findViewById(R.id.goalShortNumber);
-*/
 
         String etString = et1.getText().toString();
         String etString2 = et2.getText().toString();
@@ -350,9 +274,9 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
 
                 String combinedShortString = etString4 + ", " + etString6;
                 if (checkBox.isChecked() && !(checkBox2.isChecked())) {
-                    combinedShortString = etString6;
+                    combinedShortString = etString6 + " ";
                 } else if (checkBox2.isChecked() && !(checkBox.isChecked())) {
-                    combinedShortString = etString4;
+                    combinedShortString = etString4 + " ";
                 } else if ((checkBox.isChecked() && checkBox2.isChecked())) {
                     combinedShortString = "";
                 } else if (!(checkBox.isChecked()) && !(checkBox2.isChecked())) {
@@ -469,12 +393,11 @@ public class GoalCreationActivity extends Activity implements View.OnClickListen
                 intent.putExtra(GoalActivity.GOALENTRY4, combinedShortString);
 
                 setResult(RESULT_OK);
-                //} else {
-                //  setResult(RESULT_CANCELED);
-                //}
-
-                super.finish();
+            } else {
+                setResult(RESULT_CANCELED);
             }
+
+            super.finish();
         }
     }
 }

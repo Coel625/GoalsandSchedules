@@ -30,8 +30,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
             ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
             ScheduleColumns.date + "  TEXT NOT NULL , " +
-            ScheduleColumns.start + " TEXT NOT NULL , " +
-            ScheduleColumns.end + " TEXT NOT NULL , " +
+            ScheduleColumns.time + " TEXT NOT NULL , " +
             ScheduleColumns.description + " TEXT NOT NULL )";
 
     public enum LongTermColumns {
@@ -61,7 +60,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     public enum ScheduleColumns {
-        schedule_id, shortTerm_id, date, start, end, description;
+        schedule_id, shortTerm_id, date, time, description;
 
         public static String[] names() {
             ScheduleColumns[] v=values();
@@ -109,8 +108,6 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion == 1 && oldVersion != newVersion) {
 
-            // The reason we need all this code is because
-            // SQLite does not support ALTER TABLE ... DROP COLUMN
             try {
                 db.beginTransaction();
 
@@ -169,8 +166,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         ScheduleColumns.schedule_id + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
                         ScheduleColumns.shortTerm_id + " TEXT  NOT NULL , " +
                         ScheduleColumns.date + "  TEXT NOT NULL , " +
-                        ScheduleColumns.start + " TEXT NOT NULL , " +
-                        ScheduleColumns.end + " TEXT NOT NULL , " +
+                        ScheduleColumns.time + " TEXT NOT NULL , " +
                         ScheduleColumns.description + " TEXT NOT NULL )";
                 db.execSQL(sql);
 
@@ -180,8 +176,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                         ScheduleColumns.schedule_id + ", " +
                         ScheduleColumns.shortTerm_id + ", " +
                         ScheduleColumns.date + ", " +
-                        ScheduleColumns.start + "," +
-                        ScheduleColumns.end + ", " +
+                        ScheduleColumns.time + "," +
                         ScheduleColumns.description +
                         " from tmp";
                 db.execSQL(sql);

@@ -4,18 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ScheduleCreationActivity extends Activity implements View.OnClickListener {
 
-    private LinearLayout mainLayout;
     private DbDataSource dataSource;
 
     @Override
@@ -24,8 +20,6 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
         dataSource=new DbDataSource(getApplicationContext());
         setContentView(R.layout.activity_schedulecreation);
 
-        mainLayout = (LinearLayout) findViewById(R.id.schedulecreation_layout);
-
         Button b = (Button) findViewById(R.id.schedulesubmit_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b.setOnClickListener(this);
@@ -33,8 +27,6 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        //Button b = (Button) findViewById(R.id.schedulesubmit_button);
-        //Button b2 = (Button) findViewById(R.id.newSTEntry_button);
         if (v.getId() == R.id.schedulesubmit_button) {
             finish();
         }
@@ -114,14 +106,13 @@ public class ScheduleCreationActivity extends Activity implements View.OnClickLi
 
                 String combinedTimesString = "From " + etString + ":" + etString2 + " to " + etString3 + ":" + etString4;
                 String combinedDateString = "on " + spinnerString;
-                String combinedShortString = "Short-Term Goals: " + spinnerString2;
 
-                dataSource.createSchedule(combinedShortString, combinedDateString, combinedTimesString, etString5, etString5);
+                dataSource.createSchedule(spinnerString2, combinedDateString, combinedTimesString, etString5);
                 et5.getText().clear();
 
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA1, combinedTimesString);
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA2, combinedDateString);
-                intent.putExtra(ScheduleActivity.SCHEDULEDATA3, combinedShortString);
+                intent.putExtra(ScheduleActivity.SCHEDULEDATA3, spinnerString2);
                 intent.putExtra(ScheduleActivity.SCHEDULEDATA4, etString5);
 
                 setResult(RESULT_OK, intent);

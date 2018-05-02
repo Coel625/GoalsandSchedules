@@ -1,24 +1,29 @@
 package edu.apsu.csci.goalsandschedules;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class OnlineActivity extends Activity implements View.OnClickListener {
+public class OnlineActivity extends ListActivity implements View.OnClickListener {
 
     private DbDataSource dataSource;
+
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online);
+
+        dataSource = new DbDataSource(getApplicationContext());
 
         Button b = (Button) findViewById(R.id.goal_button);
         b.setPaintFlags(b.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -32,7 +37,38 @@ public class OnlineActivity extends Activity implements View.OnClickListener {
         b3.setPaintFlags(b3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         b3.setOnClickListener(this);
 
-        loadForm();
+        Button b4 = (Button) findViewById(R.id.onlinegoal_button);
+        b4.setOnClickListener(this);
+
+        Button b5 = (Button) findViewById(R.id.onlineschedule_button);
+        b5.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dataSource.open();
+
+        if (counter == 0) {
+            List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
+
+            ArrayAdapter<LongTermGoal> adapter = new ArrayAdapter<LongTermGoal>(this,
+                    R.layout.entry_set, R.id.goalListNameData, longTermGoal);
+            setListAdapter(new MultipleGoalAdapter(OnlineActivity.this, R.layout.entry_set, longTermGoal));
+        } else if (counter == 1) {
+            List<Schedule> schedule = dataSource.getAllSchedules();
+
+            ArrayAdapter<Schedule> adapter2 = new ArrayAdapter<Schedule>(this,
+                    R.layout.entry_set2, R.id.scheduleEntryTimes, schedule);
+            setListAdapter(new MultipleScheduleAdapter(OnlineActivity.this, R.layout.entry_set2, schedule));
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        dataSource.close();
     }
 
     @Override
@@ -43,6 +79,16 @@ public class OnlineActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.goal_button) {
             Intent intent = new Intent(getApplicationContext(), GoalActivity.class);
             startActivity(intent);
+        } else if (v.getId() == R.id.onlinegoal_button) {
+            TextView textView = (TextView) findViewById(R.id.online_tv);
+            textView.setText("Goals");
+            counter = 0;
+            onStart();
+        } else if (v.getId() == R.id.onlineschedule_button) {
+            TextView textView = (TextView) findViewById(R.id.online_tv);
+            textView.setText("Schedules");
+            counter = 1;
+            onStart();
         }
     }
 
@@ -50,85 +96,40 @@ public class OnlineActivity extends Activity implements View.OnClickListener {
         dataSource = new DbDataSource(getApplicationContext());
         dataSource.open();
         List<LongTermGoal> longTermGoal = dataSource.getAllLongTermGoals();
-        LongTermGoal ltg = longTermGoal.get(longTermGoal.size()-1);
-        TextView LTG1Title = (TextView) findViewById(R.id.goalListNameData);
-        LTG1Title.setText(ltg.getTitle());
-        TextView LTGDescription = (TextView) findViewById(R.id.goalListDescData);
-        LTGDescription.setText(ltg.getDescription());
-        ProgressBar LTGProgress = (ProgressBar) findViewById(R.id.progressBar);
-        LTGProgress.setProgress(ltg.getProgress());
-        List<ShortTermGoal> shortTermGoal = dataSource.getAllShortTermGoals();
-        ShortTermGoal stg = shortTermGoal.get(shortTermGoal.size()-1);
-        TextView STGTitle = (TextView) findViewById(R.id.goalListShortData);
-        STGTitle.setText(stg.getTitle());
-
-        ltg = longTermGoal.get(longTermGoal.size()-2);
-        LTG1Title = (TextView) findViewById(R.id.goalListNameData2);
-        LTG1Title.setText(ltg.getTitle());
-        LTGDescription = (TextView) findViewById(R.id.goalListDescData2);
-        LTGDescription.setText(ltg.getDescription());
-        LTGProgress = (ProgressBar) findViewById(R.id.progressBar2);
-        LTGProgress.setProgress(ltg.getProgress());
-        shortTermGoal = dataSource.getAllShortTermGoals();
-        stg = shortTermGoal.get(shortTermGoal.size()-2);
-        STGTitle = (TextView) findViewById(R.id.goalListShortData2);
-        STGTitle.setText(stg.getTitle());
-
-        ltg = longTermGoal.get(longTermGoal.size()-3);
-        LTG1Title = (TextView) findViewById(R.id.goalListNameData3);
-        LTG1Title.setText(ltg.getTitle());
-        LTGDescription = (TextView) findViewById(R.id.goalListDescData3);
-        LTGDescription.setText(ltg.getDescription());
-        LTGProgress = (ProgressBar) findViewById(R.id.progressBar3);
-        LTGProgress.setProgress(ltg.getProgress());
-        shortTermGoal = dataSource.getAllShortTermGoals();
-        stg = shortTermGoal.get(shortTermGoal.size()-3);
-        STGTitle = (TextView) findViewById(R.id.goalListShortData3);
-        STGTitle.setText(stg.getTitle());
-
-        ltg = longTermGoal.get(longTermGoal.size()-4);
-        LTG1Title = (TextView) findViewById(R.id.goalListNameData4);
-        LTG1Title.setText(ltg.getTitle());
-        LTGDescription = (TextView) findViewById(R.id.goalListDescData4);
-        LTGDescription.setText(ltg.getDescription());
-        LTGProgress = (ProgressBar) findViewById(R.id.progressBar4);
-        LTGProgress.setProgress(ltg.getProgress());
-        shortTermGoal = dataSource.getAllShortTermGoals();
-        stg = shortTermGoal.get(shortTermGoal.size()-4);
-        STGTitle = (TextView) findViewById(R.id.goalListShortData4);
-        STGTitle.setText(stg.getTitle());
-
-        ltg = longTermGoal.get(longTermGoal.size()-5);
-        LTG1Title = (TextView) findViewById(R.id.goalListNameData5);
-        LTG1Title.setText(ltg.getTitle());
-        LTGDescription = (TextView) findViewById(R.id.goalListDescData5);
-        LTGDescription.setText(ltg.getDescription());
-        LTGProgress = (ProgressBar) findViewById(R.id.progressBar5);
-        LTGProgress.setProgress(ltg.getProgress());
-        shortTermGoal = dataSource.getAllShortTermGoals();
-        stg = shortTermGoal.get(shortTermGoal.size()-5);
-        STGTitle = (TextView) findViewById(R.id.goalListShortData5);
-        STGTitle.setText(stg.getTitle());
+        if (!(longTermGoal.size()-1 < 0)) {
+            LongTermGoal ltg = longTermGoal.get(longTermGoal.size() - 1);
+            TextView LTG1Title = (TextView) findViewById(R.id.goalListNameData);
+            LTG1Title.setText(ltg.getTitle());
+            TextView LTGDescription = (TextView) findViewById(R.id.goalListDescData);
+            LTGDescription.setText(ltg.getDescription());
+            ProgressBar LTGProgress = (ProgressBar) findViewById(R.id.progressBar);
+            LTGProgress.setProgress(ltg.getProgress());
+            List<ShortTermGoal> shortTermGoal = dataSource.getAllShortTermGoals();
+            ShortTermGoal stg = shortTermGoal.get(shortTermGoal.size() - 1);
+            TextView STGTitle = (TextView) findViewById(R.id.goalListShortData);
+            STGTitle.setText(stg.getTitle());
+        }
 
         List<Schedule> schedule = dataSource.getAllSchedules();
-        Schedule sc = schedule.get(schedule.size()-1);
-        TextView SC1Time = (TextView) findViewById(R.id.scheduleEntryTimes);
-        SC1Time.setText(sc.getDescription());
-        TextView SCDate = (TextView) findViewById(R.id.scheduleEntryDate);
-        SCDate.setText(sc.getDescription());
-        TextView SCShort = (TextView) findViewById(R.id.scheduleEntryShort);
-        SCShort.setText(sc.getDescription());
-        TextView SCDesc = (TextView) findViewById(R.id.scheduleEntryDesc);
-        SCDesc.setText(sc.getDescription());
+        if (!(schedule.size()-1 < 0)) {
+            Schedule sc = schedule.get(schedule.size() - 1);
+            TextView SC1Time = (TextView) findViewById(R.id.scheduleEntryTimes);
+            SC1Time.setText(sc.getDescription());
+            TextView SCDate = (TextView) findViewById(R.id.scheduleEntryDate);
+            SCDate.setText(sc.getDescription());
+            TextView SCShort = (TextView) findViewById(R.id.scheduleEntryShort);
+            SCShort.setText(sc.getDescription());
+            TextView SCDesc = (TextView) findViewById(R.id.scheduleEntryDesc);
+            SCDesc.setText(sc.getDescription());
+        }
+    }
 
-        sc = schedule.get(schedule.size()-2);
-        SC1Time = (TextView) findViewById(R.id.scheduleEntryTimes2);
-        SC1Time.setText(sc.getDescription());
-        SCDate = (TextView) findViewById(R.id.scheduleEntryDate2);
-        SCDate.setText(sc.getDescription());
-        SCShort = (TextView) findViewById(R.id.scheduleEntryShort2);
-        SCShort.setText(sc.getDescription());
-        SCDesc = (TextView) findViewById(R.id.scheduleEntryDesc2);
-        SCDesc.setText(sc.getDescription());
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            loadForm();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

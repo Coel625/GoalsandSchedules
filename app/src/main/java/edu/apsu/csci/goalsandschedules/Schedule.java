@@ -1,13 +1,10 @@
 package edu.apsu.csci.goalsandschedules;
 
-import java.util.Date;
-
 public class Schedule {
     private int schedule_id;
-    private int shortterm_id;
-    private Date date;
-    private int start;
-    private int end;
+    private String short_term;
+    private String date;
+    private String time;
     private String description;
 
     public int getSchedule_id() {
@@ -18,36 +15,28 @@ public class Schedule {
         this.schedule_id=schedule_id;
     }
 
-    public int getShortterm_id() {
-        return shortterm_id;
+    public String getShortterm_id() {
+        return short_term;
     }
 
-    public void setShortterm_id(int shortterm_id) {
-        this.shortterm_id=shortterm_id;
+    public void setShortterm_id(String short_term) {
+        this.short_term=short_term;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date=date;
     }
 
-    public int getStart() {
-        return start;
+    public String getTime() {
+        return time;
     }
 
-    public void setStart(int start) {
-        this.start=start;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public void setEnd(int end) {
-        this.end=end;
+    public void setTime(String start) {
+        this.time=start;
     }
 
     public String getDescription() {

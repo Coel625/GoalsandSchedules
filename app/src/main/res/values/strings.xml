@@ -14,10 +14,15 @@
 
     <string-array name="shortgoal_array" color="#20afb2">
         <item>Select one of your short-term goals: </item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Short-term goal: 1</item>
+        <item>Short-term goal: 2</item>
+        <item>Short-term goal: 3</item>
+        <item>Short-term goal: 4</item>
+        <item>Short-term goal: 5</item>
+        <item>Short-term goal: 6</item>
+        <item>Short-term goal: 7</item>
+        <item>Short-term goal: 8</item>
+        <item>Short-term goal: 9</item>
+        <item>Short-term goal: 10</item>
     </string-array>
 </resources>

@@ -405,22 +405,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/newSTGoal_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="       + Create Short-Term Goal        "
-            android:textColor="#42f477"
-            android:textSize="14sp" />
-
-        <Button
             android:id="@+id/goalsubmit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Submit"
-            android:textColor="#42b477"
+            android:textColor="#55f2f4"
             android:textSize="20sp" />
 
     </LinearLayout>
